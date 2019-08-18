@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SignpostMarv/Daft-Typed-Object.git",
-                "reference": "90a29c4e59e579a25296d172f90e7318fad038a8"
+                "reference": "62c7275c29c1f95cbfdc7f8ce780f20a45a3a9a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SignpostMarv/Daft-Typed-Object/zipball/90a29c4e59e579a25296d172f90e7318fad038a8",
-                "reference": "90a29c4e59e579a25296d172f90e7318fad038a8",
+                "url": "https://api.github.com/repos/SignpostMarv/Daft-Typed-Object/zipball/62c7275c29c1f95cbfdc7f8ce780f20a45a3a9a1",
+                "reference": "62c7275c29c1f95cbfdc7f8ce780f20a45a3a9a1",
                 "shasum": ""
             },
             "require": {
@@ -52,7 +52,7 @@
                 }
             ],
             "description": "Typed Object, a simplified version of signpostmarv/daft-object",
-            "time": "2019-08-18T08:25:08+00:00"
+            "time": "2019-08-18T10:28:24+00:00"
         }
     ],
     "packages-dev": [
