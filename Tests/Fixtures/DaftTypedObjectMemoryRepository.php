@@ -40,15 +40,7 @@ class DaftTypedObjectMemoryRepository extends AbstractDaftTypedObjectRepository 
 	public function AppendTypedObject(
 		DaftTypedObjectForRepository $object
 	) : DaftTypedObjectForRepository {
-		$new_id = max(0, count($this->data), ...array_values(array_map(
-			function (array $row) : int {
-				/**
-				* @var int
-				*/
-				return $row['id'];
-			},
-			$this->data
-		))) + 1;
+		$new_id = max(0, count($this->data)) + 1;
 
 		$data = [
 			'id' => $new_id,

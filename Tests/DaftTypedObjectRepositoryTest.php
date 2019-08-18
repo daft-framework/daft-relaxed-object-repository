@@ -210,15 +210,6 @@ class DaftTypedObjectRepositoryTest extends Base
 
 		$this->assertNotSame($object, $fresh1);
 		$this->assertSame($object->ObtainId(), $fresh1->ObtainId());
-
-		/**
-		* @var T1
-		*/
-		$fresh2 = $repo->AppendTypedObject($object);
-
-		$this->assertNotSame($object, $fresh2);
-		$this->assertNotSame($fresh1, $fresh2);
-		$this->assertNotSame($fresh1->ObtainId(), $fresh2->ObtainId());
 	}
 
 	/**
