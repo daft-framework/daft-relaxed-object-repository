@@ -99,32 +99,9 @@ class DaftTypedObjectRepositoryTest extends Base
 
 		foreach ($append_these as $i => $data) {
 			/**
-			* @var array<int, K>
-			*/
-			$data_keys = array_keys($data);
-
-			/**
 			* @var T1
 			*/
-			$object = new $object_type(array_combine($data_keys, array_map(
-				/**
-				* @param K $property
-				* @param S[K] $value
-				*
-				* @return T[K]
-				*/
-				function (string $property, $value) use ($object_type) {
-					/**
-					* @var T[K]
-					*/
-					return $object_type::PropertyScalarOrNullToValue(
-						(string) $property,
-						$value
-					);
-				},
-				$data_keys,
-				$data
-			)));
+			$object = $object_type::__fromArray($data);
 
 			$testing[$i] = $repo->AppendTypedObject($object);
 		}
