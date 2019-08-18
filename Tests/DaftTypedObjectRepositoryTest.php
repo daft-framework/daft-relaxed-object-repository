@@ -169,47 +169,6 @@ class DaftTypedObjectRepositoryTest extends Base
 				$repo->MaybeRecallTypedObject($object->ObtainId())
 			);
 		}
-
-		/**
-		* @var S
-		*/
-		$data = current($expect_these);
-
-		/**
-		* @var array<int, K>
-		*/
-		$data_keys = array_keys($data);
-
-		/**
-		* @var T1
-		*/
-		$object = new $object_type(array_combine($data_keys, array_map(
-			/**
-			* @param K $property
-			* @param S[K] $value
-			*
-			* @return T[K]
-			*/
-			function (string $property, $value) use ($object_type) {
-				/**
-				* @var T[K]
-				*/
-				return $object_type::PropertyScalarOrNullToValue(
-					(string) $property,
-					$value
-				);
-			},
-			$data_keys,
-			$data
-		)));
-
-		/**
-		* @var T1
-		*/
-		$fresh1 = $repo->AppendTypedObject($object);
-
-		$this->assertNotSame($object, $fresh1);
-		$this->assertSame($object->ObtainId(), $fresh1->ObtainId());
 	}
 
 	/**
