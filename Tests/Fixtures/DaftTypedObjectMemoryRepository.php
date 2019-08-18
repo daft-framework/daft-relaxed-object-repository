@@ -86,31 +86,7 @@ class DaftTypedObjectMemoryRepository extends AbstractDaftTypedObjectRepository 
 
 		parent::UpdateTypedObject($object);
 
-		/**
-		* @var array<int, string>
-		*/
-		$properties = $object::TYPED_PROPERTIES;
-
-		/**
-		* @var array{id:int, name:string}
-		*/
-		$data = array_combine(
-			$properties,
-			array_map(
-				/**
-				* @return scalar|array|object|null
-				*/
-				function (string $property) use ($object) {
-					/**
-					* @var scalar|array|object|null
-					*/
-					return $object->$property;
-				},
-				$properties
-			)
-		);
-
-		$this->data[$hash] = $data;
+		$this->data[$hash] = $object->__toArray();
 	}
 
 	public function RemoveTypedObject(array $id) : void
@@ -153,7 +129,7 @@ class DaftTypedObjectMemoryRepository extends AbstractDaftTypedObjectRepository 
 				/**
 				* @var T1
 				*/
-				$object = new $type($row);
+				$object = $type::__fromArray($row);
 
 				$this->UpdateTypedObject($object);
 
