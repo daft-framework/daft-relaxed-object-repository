@@ -13,7 +13,7 @@ use SignpostMarv\DaftTypedObject\DaftTypedObjectForRepository;
 use Throwable;
 
 /**
-* @template T1 as ImmutableForRepository
+* @template T1 as MutableForRepository
 * @template T2 as array{id:int}
 *
 * @template-extends AbstractDaftTypedObjectRepository<T1, T2>

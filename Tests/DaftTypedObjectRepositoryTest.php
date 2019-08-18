@@ -47,7 +47,7 @@ class DaftTypedObjectRepositoryTest extends Base
 		*/
 		return [
 			[
-				Fixtures\ImmutableForRepository::class,
+				Fixtures\MutableForRepository::class,
 				Fixtures\DaftTypedObjectMemoryRepository::class,
 				[],
 				[

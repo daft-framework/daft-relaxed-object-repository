@@ -8,7 +8,7 @@ namespace SignpostMarv\DaftTypedObject\Fixtures;
 
 use SignpostMarv\DaftTypedObject\DaftTypedObjectForRepository;
 
-class ImmutableForRepository extends Immutable implements DaftTypedObjectForRepository
+class MutableForRepository extends Mutable implements DaftTypedObjectForRepository
 {
 	public function ObtainId() : array
 	{
