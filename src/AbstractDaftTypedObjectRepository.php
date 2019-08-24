@@ -30,7 +30,7 @@ abstract class AbstractDaftTypedObjectRepository implements DaftTypedObjectRepos
 	/**
 	* @param class-string<T1> $type
 	*/
-	protected function __construct(string $type)
+	public function __construct(string $type)
 	{
 		$this->type = $type;
 	}
@@ -88,22 +88,6 @@ abstract class AbstractDaftTypedObjectRepository implements DaftTypedObjectRepos
 		}
 
 		return $maybe;
-	}
-
-	/**
-	* @param class-string<T1> $type
-	* @param mixed ...$_args
-	*
-	* @return static<T1, T2>
-	*/
-	public static function DaftTypedObjectRepositoryByType(
-		string $type,
-		...$_args
-	) : DaftTypedObjectRepository {
-		/**
-		* @var static<T1, T2>
-		*/
-		return new static($type);
 	}
 
 	/**

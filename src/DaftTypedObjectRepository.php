@@ -15,6 +15,11 @@ use Throwable;
 interface DaftTypedObjectRepository
 {
 	/**
+	* @param class-string<T1> $type
+	*/
+	public function __construct(string $type);
+
+	/**
 	* @param T1 $object
 	*/
 	public function UpdateTypedObject(
@@ -49,15 +54,4 @@ interface DaftTypedObjectRepository
 	public function MaybeRecallTypedObject(
 		array $id
 	) : ? DaftTypedObjectForRepository;
-
-	/**
-	* @param class-string<T1> $type
-	* @param mixed ...$args
-	*
-	* @return static<T1, T2>
-	*/
-	public static function DaftTypedObjectRepositoryByType(
-		string $type,
-		...$args
-	) : DaftTypedObjectRepository;
 }

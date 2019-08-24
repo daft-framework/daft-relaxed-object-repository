@@ -84,7 +84,7 @@ class DaftTypedObjectRepositoryTest extends Base
 		array $append_these,
 		array $expect_these
 	) : void {
-		$repo = $repo_type::DaftTypedObjectRepositoryByType(
+		$repo = new $repo_type(
 			$object_type,
 			...$repo_args
 		);
@@ -191,7 +191,7 @@ class DaftTypedObjectRepositoryTest extends Base
 		array $_append_these,
 		array $expect_these
 	) : void {
-		$repo = $repo_type::DaftTypedObjectRepositoryByType(
+		$repo = new $repo_type(
 			$object_type,
 			...$repo_args
 		);
@@ -251,7 +251,7 @@ class DaftTypedObjectRepositoryTest extends Base
 		array $_append_these,
 		array $expect_these
 	) : void {
-		$repo = $repo_type::DaftTypedObjectRepositoryByType(
+		$repo = new $repo_type(
 			$object_type,
 			...$repo_args
 		);
