@@ -35,6 +35,7 @@
 			"phpcpd src Tests",
 			"phpmnd ./ --exclude=./phpunit/ --exclude=./vendor/ --non-zero-exit-on-violation --hint",
 			"composer-require-checker check ./composer.json",
+			"infection --min-msi=100",
 			"php-cs-fixer fix --verbose --dry-run"
 		]
 	},
@@ -56,6 +57,7 @@
 		"signpostmarv/daft-typed-object": "^0.1|^0.2|0.2.x-dev"
 	},
 	"require-dev": {
+		"infection/infection": "^0.13.5",
 		"maglnet/composer-require-checker": "^2.0",
 		"php-coveralls/php-coveralls": "^2.1",
 		"phpunit/phpunit": "^8.3",
