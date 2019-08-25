@@ -28,6 +28,7 @@
 	"scripts": {
 		"tests": [
 			"phpunit",
+			"infection --min-msi=100",
 			"@static-analysis"
 		],
 		"static-analysis": [
@@ -35,7 +36,6 @@
 			"phpcpd src Tests",
 			"phpmnd ./ --exclude=./phpunit/ --exclude=./vendor/ --non-zero-exit-on-violation --hint",
 			"composer-require-checker check ./composer.json",
-			"infection --min-msi=100",
 			"php-cs-fixer fix --verbose --dry-run"
 		]
 	},
