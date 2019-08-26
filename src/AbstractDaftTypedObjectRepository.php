@@ -18,16 +18,15 @@ use Throwable;
 abstract class AbstractDaftTypedObjectRepository implements DaftTypedObjectRepository
 {
 	/**
-	* @var array<string, T1>
-	*/
-	protected $memory = [];
-
-	/**
 	* @readonly
 	*
 	* @var class-string<T1>
 	*/
 	public $type;
+	/**
+	* @var array<string, T1>
+	*/
+	protected $memory = [];
 
 	/**
 	* @param array{type:class-string<T1>} $options
