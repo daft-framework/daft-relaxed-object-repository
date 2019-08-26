@@ -23,11 +23,10 @@ class DaftTypedObjectRepositoryTest extends Base
 	* @return array<
 		int,
 		array{
-			0:class-string<T1>,
-			1:class-string<AppendableTypedObjectRepository>,
-			2:array<int, mixed>,
-			3:array<int, array<string, scalar|null>>,
-			4:array<int, array<string, scalar|null>>
+			0:class-string<AppendableTypedObjectRepository>,
+			1:array{type:class-string<T1>},
+			2:array<int, array<string, scalar|null>>,
+			3:array<int, array<string, scalar|null>>
 		}
 	>
 	*/
@@ -37,19 +36,19 @@ class DaftTypedObjectRepositoryTest extends Base
 		* @var array<
 			int,
 			array{
-				0:class-string<T1>,
-				1:class-string<AppendableTypedObjectRepository>,
-				2:array<int, mixed>,
-				3:array<int, array<string, scalar|null>>,
-				4:array<int, array<string, scalar|null>>
+				0:class-string<AppendableTypedObjectRepository>,
+				1:array{type:class-string<T1>},
+				2:array<int, array<string, scalar|null>>,
+				3:array<int, array<string, scalar|null>>
 			}
 		>
 		*/
 		return [
 			[
-				Fixtures\MutableForRepository::class,
 				Fixtures\DaftTypedObjectMemoryRepository::class,
-				[],
+				[
+					'type' => Fixtures\MutableForRepository::class,
+				],
 				[
 					[
 						'id' => 0,
@@ -71,23 +70,24 @@ class DaftTypedObjectRepositoryTest extends Base
 	*
 	* @dataProvider dataProviderAppendTypedObject
 	*
-	* @param class-string<T1> $object_type
 	* @param class-string<AppendableTypedObjectRepository> $repo_type
-	* @param array<int, mixed> $repo_args
+	* @param array{type:class-string<T1>} $repo_args
 	* @param array<int, S> $append_these
 	* @param array<int, S2> $expect_these
 	*/
 	public function testAppendTypedObject(
-		string $object_type,
 		string $repo_type,
 		array $repo_args,
 		array $append_these,
 		array $expect_these
 	) : void {
 		$repo = new $repo_type(
-			$object_type,
-			...$repo_args
+			$repo_args
 		);
+
+		$object_type = $repo_args['type'];
+
+		$this->assertTrue(class_exists($object_type));
 
 		$this->assertGreaterThan(0, count($append_these));
 		$this->assertCount(count($append_these), $expect_these);
@@ -178,23 +178,22 @@ class DaftTypedObjectRepositoryTest extends Base
 	*
 	* @depends testAppendTypedObject
 	*
-	* @param class-string<T1> $object_type
 	* @param class-string<AppendableTypedObjectRepository> $repo_type
-	* @param array<int, mixed> $repo_args
+	* @param array{type:class-string<T1>} $repo_args
 	* @param array<int, S> $_append_these
 	* @param array<int, S2> $expect_these
 	*/
 	public function testDefaultFailure(
-		string $object_type,
 		string $repo_type,
 		array $repo_args,
 		array $_append_these,
 		array $expect_these
 	) : void {
 		$repo = new $repo_type(
-			$object_type,
-			...$repo_args
+			$repo_args
 		);
+
+		$object_type = $repo_args['type'];
 
 		$data = current($expect_these);
 
@@ -203,7 +202,10 @@ class DaftTypedObjectRepositoryTest extends Base
 		*/
 		$data_keys = array_keys($data);
 
-		$object = new $object_type(array_combine($data_keys, array_map(
+		/**
+		* @var T
+		*/
+		$object_args = array_combine($data_keys, array_map(
 			/**
 			* @param K $property
 			* @param S[K] $value
@@ -212,16 +214,23 @@ class DaftTypedObjectRepositoryTest extends Base
 			*/
 			function ($property, $value) use ($object_type) {
 				/**
+				* @var string
+				*/
+				$property = $property;
+
+				/**
 				* @var T[K]
 				*/
 				return $object_type::PropertyScalarOrNullToValue(
-					(string) $property,
+					$property,
 					$value
 				);
 			},
 			$data_keys,
 			$data
-		)));
+		));
+
+		$object = new $object_type($object_args);
 
 		$this->expectException(RuntimeException::class);
 		$this->expectExceptionMessage(
@@ -238,23 +247,22 @@ class DaftTypedObjectRepositoryTest extends Base
 	*
 	* @depends testAppendTypedObject
 	*
-	* @param class-string<T1> $object_type
 	* @param class-string<AppendableTypedObjectRepository> $repo_type
-	* @param array<int, mixed> $repo_args
+	* @param array{type:class-string<T1>} $repo_args
 	* @param array<int, S> $_append_these
 	* @param array<int, S2> $expect_these
 	*/
 	public function testCustomFailure(
-		string $object_type,
 		string $repo_type,
 		array $repo_args,
 		array $_append_these,
 		array $expect_these
 	) : void {
 		$repo = new $repo_type(
-			$object_type,
-			...$repo_args
+			$repo_args
 		);
+
+		$object_type = $repo_args['type'];
 
 		$data = current($expect_these);
 
@@ -263,7 +271,10 @@ class DaftTypedObjectRepositoryTest extends Base
 		*/
 		$data_keys = array_keys($data);
 
-		$object = new $object_type(array_combine($data_keys, array_map(
+		/**
+		* @var T
+		*/
+		$object_args = array_combine($data_keys, array_map(
 			/**
 			* @param K $property
 			* @param S[K] $value
@@ -281,7 +292,9 @@ class DaftTypedObjectRepositoryTest extends Base
 			},
 			$data_keys,
 			$data
-		)));
+		));
+
+		$object = new $object_type($object_args);
 
 		$random = bin2hex(random_bytes(16));
 

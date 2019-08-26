@@ -11,13 +11,15 @@ use Throwable;
 /**
 * @template T1 as DaftTypedObjectForRepository
 * @template T2 as array<string, scalar>
+*
+* @property-read class-string<T1> $type
 */
 interface DaftTypedObjectRepository
 {
 	/**
-	* @param class-string<T1> $type
+	* @param array{type:class-string<T1>} $options
 	*/
-	public function __construct(string $type);
+	public function __construct(array $options);
 
 	/**
 	* @param T1 $object

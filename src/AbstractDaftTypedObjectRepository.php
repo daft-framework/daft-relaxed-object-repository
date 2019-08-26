@@ -23,16 +23,18 @@ abstract class AbstractDaftTypedObjectRepository implements DaftTypedObjectRepos
 	protected $memory = [];
 
 	/**
+	* @readonly
+	*
 	* @var class-string<T1>
 	*/
-	protected $type;
+	public $type;
 
 	/**
-	* @param class-string<T1> $type
+	* @param array{type:class-string<T1>} $options
 	*/
-	public function __construct(string $type)
+	public function __construct(array $options)
 	{
-		$this->type = $type;
+		$this->type = $options['type'];
 	}
 
 	/**

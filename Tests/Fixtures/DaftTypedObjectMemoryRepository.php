@@ -18,7 +18,7 @@ use Throwable;
 *
 * @template-extends AbstractDaftTypedObjectRepository<T1, T2>
 *
-* @template-implements AppendableTypedObjectRepository<T1>
+* @template-implements AppendableTypedObjectRepository<T1, T2>
 */
 class DaftTypedObjectMemoryRepository extends AbstractDaftTypedObjectRepository implements AppendableTypedObjectRepository
 {
