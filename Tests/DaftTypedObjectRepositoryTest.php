@@ -106,34 +106,10 @@ class DaftTypedObjectRepositoryTest extends Base
 			$testing[$i] = $repo->AppendTypedObject($object);
 		}
 
-		/**
-		* @var array<int, string>
-		*/
-		$properties = $object_type::TYPED_PROPERTIES;
-
 		foreach ($testing as $i => $object) {
 			$this->assertSame(
 				$expect_these[$i],
-				array_combine($properties, array_map(
-					/**
-					* @return S2[K]
-					*/
-					function (string $property) use ($object) {
-						/**
-						* @var T[K]
-						*/
-						$value = $object->$property;
-
-						/**
-						* @var S2[K]
-						*/
-						return $object::PropertyValueToScalarOrNull(
-							$property,
-							$value
-						);
-					},
-					$properties
-				))
+				$object->__toArray()
 			);
 
 			$this->assertSame(
