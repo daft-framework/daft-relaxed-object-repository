@@ -57,7 +57,7 @@ class DaftTypedObjectRepositoryTest extends Base
 				],
 				[
 					[
-						'id' => 1,
+						'id' => '1',
 						'name' => 'foo',
 					],
 				],
