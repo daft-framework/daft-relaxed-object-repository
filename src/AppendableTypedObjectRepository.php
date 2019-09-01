@@ -9,6 +9,7 @@ namespace SignpostMarv\DaftTypedObject;
 /**
 * @template T1 as DaftTypedObjectForRepository
 * @template T2 as array<string, scalar>
+* @template S1 as array<string, scalar|null>
 *
 * @template-extends DaftTypedObjectRepository<T1, T2>
 */
@@ -21,5 +22,12 @@ interface AppendableTypedObjectRepository extends DaftTypedObjectRepository
 	*/
 	public function AppendTypedObject(
 		DaftTypedObjectForRepository $object
+	) : DaftTypedObjectForRepository;
+
+	/**
+	* @param S1 $data
+	*/
+	public function AppendTypedObjectFromArray(
+		array $data
 	) : DaftTypedObjectForRepository;
 }

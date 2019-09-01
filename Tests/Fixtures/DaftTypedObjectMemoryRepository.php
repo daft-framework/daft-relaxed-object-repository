@@ -15,10 +15,11 @@ use Throwable;
 /**
 * @template T1 as MutableForRepository
 * @template T2 as array{id:int}
+* @template S1 as array{name:string}
 *
 * @template-extends AbstractDaftTypedObjectRepository<T1, T2>
 *
-* @template-implements AppendableTypedObjectRepository<T1, T2>
+* @template-implements AppendableTypedObjectRepository<T1, T2, S1>
 */
 class DaftTypedObjectMemoryRepository extends AbstractDaftTypedObjectRepository implements AppendableTypedObjectRepository
 {
@@ -40,11 +41,22 @@ class DaftTypedObjectMemoryRepository extends AbstractDaftTypedObjectRepository 
 	public function AppendTypedObject(
 		DaftTypedObjectForRepository $object
 	) : DaftTypedObjectForRepository {
+		/**
+		* @var T1
+		*/
+		return $this->AppendTypedObjectFromArray([
+			'name' => $object->name,
+		]);
+	}
+
+	public function AppendTypedObjectFromArray(
+		array $data
+	) : DaftTypedObjectForRepository {
 		$new_id = max(0, count($this->data)) + 1;
 
 		$data = [
 			'id' => $new_id,
-			'name' => $object->name,
+			'name' => $data['name'],
 		];
 
 		$hash = static::DaftTypedObjectHash(['id' => $new_id]);
