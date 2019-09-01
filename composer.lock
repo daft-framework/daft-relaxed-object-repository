@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "19f88649a0a4c25fed83c567490cefea",
+    "content-hash": "08865a1f03ed9c251baa5bdf610cb6d4",
     "packages": [
         {
             "name": "signpostmarv/daft-typed-object",
-            "version": "dev-master",
+            "version": "v0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/daft-framework/Daft-Typed-Object.git",
-                "reference": "4b9b7177b112a554cf89828837024fb3f563c2f0"
+                "reference": "15d94a82d0b7a67f0b4c0e7afd9c81aa681a198b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daft-framework/Daft-Typed-Object/zipball/4b9b7177b112a554cf89828837024fb3f563c2f0",
-                "reference": "4b9b7177b112a554cf89828837024fb3f563c2f0",
+                "url": "https://api.github.com/repos/daft-framework/Daft-Typed-Object/zipball/15d94a82d0b7a67f0b4c0e7afd9c81aa681a198b",
+                "reference": "15d94a82d0b7a67f0b4c0e7afd9c81aa681a198b",
                 "shasum": ""
             },
             "require": {
@@ -64,7 +64,7 @@
                 }
             ],
             "description": "Typed Object, a simplified version of signpostmarv/daft-object",
-            "time": "2019-08-25T11:07:22+00:00"
+            "time": "2019-09-01T08:28:25+00:00"
         }
     ],
     "packages-dev": [
@@ -206,16 +206,16 @@
         },
         {
             "name": "composer/ca-bundle",
-            "version": "1.2.3",
+            "version": "1.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/ca-bundle.git",
-                "reference": "f26a67e397be0e5c00d7c52ec7b5010098e15ce5"
+                "reference": "10bb96592168a0f8e8f6dcde3532d9fa50b0b527"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/f26a67e397be0e5c00d7c52ec7b5010098e15ce5",
-                "reference": "f26a67e397be0e5c00d7c52ec7b5010098e15ce5",
+                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/10bb96592168a0f8e8f6dcde3532d9fa50b0b527",
+                "reference": "10bb96592168a0f8e8f6dcde3532d9fa50b0b527",
                 "shasum": ""
             },
             "require": {
@@ -258,7 +258,7 @@
                 "ssl",
                 "tls"
             ],
-            "time": "2019-08-02T09:05:43+00:00"
+            "time": "2019-08-30T08:44:50+00:00"
         },
         {
             "name": "composer/semver",
@@ -642,16 +642,16 @@
         },
         {
             "name": "friendsofphp/php-cs-fixer",
-            "version": "v2.15.1",
+            "version": "v2.15.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
-                "reference": "20064511ab796593a3990669eff5f5b535001f7c"
+                "reference": "705490b0f282f21017d73561e9498d2b622ee34c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/20064511ab796593a3990669eff5f5b535001f7c",
-                "reference": "20064511ab796593a3990669eff5f5b535001f7c",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/705490b0f282f21017d73561e9498d2b622ee34c",
+                "reference": "705490b0f282f21017d73561e9498d2b622ee34c",
                 "shasum": ""
             },
             "require": {
@@ -681,9 +681,10 @@
                 "php-cs-fixer/accessible-object": "^1.0",
                 "php-cs-fixer/phpunit-constraint-isidenticalstring": "^1.1",
                 "php-cs-fixer/phpunit-constraint-xmlmatchesxsd": "^1.1",
-                "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1",
+                "phpunit/phpunit": "^5.7.27 || ^6.5.14 || ^7.1",
                 "phpunitgoodpractices/traits": "^1.8",
-                "symfony/phpunit-bridge": "^4.3"
+                "symfony/phpunit-bridge": "^4.3",
+                "symfony/yaml": "^3.0 || ^4.0"
             },
             "suggest": {
                 "ext-mbstring": "For handling non-UTF8 characters in cache signature.",
@@ -717,16 +718,16 @@
             ],
             "authors": [
                 {
-                    "name": "Dariusz Rumiński",
-                    "email": "dariusz.ruminski@gmail.com"
-                },
-                {
                     "name": "Fabien Potencier",
                     "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Dariusz Rumiński",
+                    "email": "dariusz.ruminski@gmail.com"
                 }
             ],
             "description": "A tool to automatically fix PHP code style",
-            "time": "2019-06-01T10:32:12+00:00"
+            "time": "2019-08-31T12:51:54+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -917,16 +918,16 @@
         },
         {
             "name": "infection/infection",
-            "version": "0.13.5",
+            "version": "0.13.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/infection/infection.git",
-                "reference": "0f2f3690b38c35971629fe5c61dcb5b116bc13c6"
+                "reference": "09b4d371d203f7f22dcf1741a3f6c657404fb61e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/infection/infection/zipball/0f2f3690b38c35971629fe5c61dcb5b116bc13c6",
-                "reference": "0f2f3690b38c35971629fe5c61dcb5b116bc13c6",
+                "url": "https://api.github.com/repos/infection/infection/zipball/09b4d371d203f7f22dcf1741a3f6c657404fb61e",
+                "reference": "09b4d371d203f7f22dcf1741a3f6c657404fb61e",
                 "shasum": ""
             },
             "require": {
@@ -1003,7 +1004,7 @@
                 "testing",
                 "unit testing"
             ],
-            "time": "2019-08-24T12:08:51+00:00"
+            "time": "2019-08-29T19:22:44+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -3692,16 +3693,16 @@
         },
         {
             "name": "signpostmarv/php-cs-fixer-config",
-            "version": "v0.11.0",
+            "version": "v0.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SignpostMarv/PHP-CS-Fixer-Config.git",
-                "reference": "406e18c690c06d454d975733610cb3e853986ab0"
+                "reference": "590672b598f4fd3e5a63b07caf49ebf9cb2c3162"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SignpostMarv/PHP-CS-Fixer-Config/zipball/406e18c690c06d454d975733610cb3e853986ab0",
-                "reference": "406e18c690c06d454d975733610cb3e853986ab0",
+                "url": "https://api.github.com/repos/SignpostMarv/PHP-CS-Fixer-Config/zipball/590672b598f4fd3e5a63b07caf49ebf9cb2c3162",
+                "reference": "590672b598f4fd3e5a63b07caf49ebf9cb2c3162",
                 "shasum": ""
             },
             "require": {
@@ -3732,7 +3733,7 @@
                 }
             ],
             "description": "PHP-CS-Fixer Config",
-            "time": "2019-07-12T21:00:45+00:00"
+            "time": "2019-09-01T08:21:01+00:00"
         },
         {
             "name": "symfony/config",
@@ -4973,7 +4974,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "signpostmarv/daft-typed-object": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": false,
