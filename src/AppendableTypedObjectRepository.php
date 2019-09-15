@@ -26,6 +26,8 @@ interface AppendableTypedObjectRepository extends DaftTypedObjectRepository
 
 	/**
 	* @param S1 $data
+	*
+	* @return T1
 	*/
 	public function AppendTypedObjectFromArray(
 		array $data
