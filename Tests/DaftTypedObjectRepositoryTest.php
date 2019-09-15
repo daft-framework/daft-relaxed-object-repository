@@ -87,8 +87,6 @@ class DaftTypedObjectRepositoryTest extends Base
 
 		$object_type = $repo_args['type'];
 
-		$this->assertTrue(class_exists($object_type));
-
 		$this->assertGreaterThan(0, count($append_these));
 		$this->assertCount(count($append_these), $expect_these);
 
