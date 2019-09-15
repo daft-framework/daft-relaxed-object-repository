@@ -277,4 +277,95 @@ class DaftTypedObjectRepositoryTest extends Base
 
 		$repo->RecallTypedObject($object->ObtainId(), new Exception($random));
 	}
+
+	/**
+	* @return array<
+		int,
+		array{
+			0:class-string<AppendableTypedObjectRepository&PatchableObjectRepository>,
+			1:array{type:class-string<T1>},
+			2:array<string, scalar|null>,
+			3:array<string, scalar|null>,
+			4:array<string, scalar|null>
+		}
+	>
+	*/
+	public function dataProviderPatchObject() : array
+	{
+		/**
+		* @var array<
+			int,
+			array{
+				0:class-string<AppendableTypedObjectRepository&PatchableObjectRepository>,
+				1:array{type:class-string<T1>},
+				2:array<string, scalar|null>,
+				3:array<string, scalar|null>,
+				4:array<string, scalar|null>
+			}
+		>
+		*/
+		return [
+			[
+				Fixtures\DaftTypedObjectMemoryRepository::class,
+				[
+					'type' => Fixtures\MutableForRepository::class,
+				],
+				[
+					'id' => 0,
+					'name' => 'foo',
+				],
+				[
+					'name' => 'bar',
+				],
+				[
+					'id' => '1',
+					'name' => 'bar',
+				],
+			],
+		];
+	}
+
+	/**
+	* @template K as key-of<S>
+	*
+	* @dataProvider dataProviderPatchObject
+	*
+	* @depends testAppendTypedObject
+	*
+	* @param class-string<AppendableTypedObjectRepository&PatchableObjectRepository> $repo_type
+	* @param array{type:class-string<T1>} $repo_args
+	* @param array<string, scalar|null> $append_this
+	* @param array<string, scalar|null> $patch_this
+	* @param array<string, scalar|null> $expect_this
+	*/
+	public function testPatchObject(
+		string $repo_type,
+		array $repo_args,
+		array $append_this,
+		array $patch_this,
+		array $expect_this
+	) : void {
+		$repo = new $repo_type(
+			$repo_args
+		);
+
+		$object_type = $repo_args['type'];
+
+		/**
+		* @var T1
+		*/
+		$object = $object_type::__fromArray($append_this);
+
+		/**
+		* @var T1
+		*/
+		$fresh = $repo->AppendTypedObject($object);
+
+		$repo->PatchTypedObjectData($fresh->ObtainId(), $patch_this);
+
+		$this->assertSame(
+			$expect_this,
+			$repo->RecallTypedObject($fresh->ObtainId())->__toArray()
+		);
+	}
 }

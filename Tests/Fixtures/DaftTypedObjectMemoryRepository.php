@@ -10,6 +10,7 @@ use RuntimeException;
 use SignpostMarv\DaftTypedObject\AbstractDaftTypedObjectRepository;
 use SignpostMarv\DaftTypedObject\AppendableTypedObjectRepository;
 use SignpostMarv\DaftTypedObject\DaftTypedObjectForRepository;
+use SignpostMarv\DaftTypedObject\PatchableObjectRepository;
 use Throwable;
 
 /**
@@ -20,8 +21,11 @@ use Throwable;
 * @template-extends AbstractDaftTypedObjectRepository<T1, T2>
 *
 * @template-implements AppendableTypedObjectRepository<T1, T2, S1>
+* @template-implements PatchableObjectRepository<T1, T2, S1>
 */
-class DaftTypedObjectMemoryRepository extends AbstractDaftTypedObjectRepository implements AppendableTypedObjectRepository
+class DaftTypedObjectMemoryRepository extends AbstractDaftTypedObjectRepository implements
+		AppendableTypedObjectRepository,
+		PatchableObjectRepository
 {
 	/**
 	* @var array<string, array{id:int, name:string}>
@@ -144,5 +148,36 @@ class DaftTypedObjectMemoryRepository extends AbstractDaftTypedObjectRepository 
 		}
 
 		return $maybe;
+	}
+
+	/**
+	* @param T2 $id
+	* @param S1 $data
+	*/
+	public function PatchTypedObjectData(array $id, array $data) : void
+	{
+		$type = $this->type;
+
+		/**
+		* @var array<string, scalar|null>
+		*/
+		$id = $id;
+
+		/**
+		* @var array<string, scalar|null>
+		*/
+		$data = $data;
+
+		/**
+		* @var array<string, scalar|null>
+		*/
+		$from_array_args = $id + $data;
+
+		/**
+		* @var T1
+		*/
+		$object = $type::__fromArray($from_array_args);
+
+		$this->UpdateTypedObject($object);
 	}
 }
