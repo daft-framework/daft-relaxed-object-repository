@@ -117,16 +117,10 @@ class DaftTypedObjectRepositoryTest extends Base
 
 			$repo->ForgetTypedObject($object->ObtainId());
 
-			/**
-			* @var T1|null
-			*/
 			$fresh1 = $repo->MaybeRecallTypedObject($object->ObtainId());
 
 			$this->assertNotNull($fresh1);
 
-			/**
-			* @var T1
-			*/
 			$fresh2 = $repo->RecallTypedObject($object->ObtainId());
 
 			$this->assertNotSame($object, $fresh1);
@@ -188,15 +182,10 @@ class DaftTypedObjectRepositoryTest extends Base
 			*/
 			function ($property, $value) use ($object_type) {
 				/**
-				* @var string
-				*/
-				$property = $property;
-
-				/**
 				* @var T[K]
 				*/
 				return $object_type::PropertyScalarOrNullToValue(
-					$property,
+					(string) $property,
 					$value
 				);
 			},

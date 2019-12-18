@@ -22,11 +22,12 @@ abstract class AbstractDaftTypedObjectRepository implements DaftTypedObjectRepos
 	*
 	* @var class-string<T1>
 	*/
-	public $type;
+	public string $type;
+
 	/**
 	* @var array<string, T1>
 	*/
-	protected $memory = [];
+	protected array $memory = [];
 
 	/**
 	* @param array{type:class-string<T1>} $options

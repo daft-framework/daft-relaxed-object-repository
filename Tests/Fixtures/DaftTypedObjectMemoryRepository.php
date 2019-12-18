@@ -30,12 +30,12 @@ class DaftTypedObjectMemoryRepository extends AbstractDaftTypedObjectRepository 
 	/**
 	* @var array<string, array{id:int, name:string}>
 	*/
-	protected $data = [];
+	protected array $data = [];
 
 	/**
 	* @var array<string, T1>
 	*/
-	protected $memory = [];
+	protected array $memory = [];
 
 	/**
 	* @param T1 $object
@@ -116,14 +116,6 @@ class DaftTypedObjectMemoryRepository extends AbstractDaftTypedObjectRepository 
 	public function MaybeRecallTypedObject(
 		array $id
 	) : ? DaftTypedObjectForRepository {
-		/**
-		* @var T2
-		*/
-		$id = $id;
-
-		/**
-		 * @var T1|null
-		 */
 		$maybe = parent::MaybeRecallTypedObject($id);
 
 		if (is_null($maybe)) {
@@ -168,9 +160,6 @@ class DaftTypedObjectMemoryRepository extends AbstractDaftTypedObjectRepository 
 		*/
 		$data = $data;
 
-		/**
-		* @var array<string, scalar|null>
-		*/
 		$from_array_args = $id + $data;
 
 		/**
