@@ -263,8 +263,7 @@ class DaftTypedObjectRepositoryTest extends Base
 	}
 
 	/**
-	* @return array<
-		int,
+	* @return list<
 		array{
 			0:class-string<AppendableTypedObjectRepository&PatchableObjectRepository>,
 			1:array{type:class-string<T1>},
@@ -277,8 +276,7 @@ class DaftTypedObjectRepositoryTest extends Base
 	public function dataProviderPatchObject() : array
 	{
 		/**
-		* @var array<
-			int,
+		* @var list<
 			array{
 				0:class-string<AppendableTypedObjectRepository&PatchableObjectRepository>,
 				1:array{type:class-string<T1>},
