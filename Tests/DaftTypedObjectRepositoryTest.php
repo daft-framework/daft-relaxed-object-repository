@@ -20,26 +20,24 @@ use RuntimeException;
 class DaftTypedObjectRepositoryTest extends Base
 {
 	/**
-	* @return array<
-		int,
+	* @return list<
 		array{
 			0:class-string<AppendableTypedObjectRepository>,
 			1:array{type:class-string<T1>},
-			2:array<int, array<string, scalar|null>>,
-			3:array<int, array<string, scalar|null>>
+			2:list<array<string, scalar|null>>,
+			3:list<array<string, scalar|null>>
 		}
 	>
 	*/
 	public function dataProviderAppendTypedObject() : array
 	{
 		/**
-		* @var array<
-			int,
+		* @var list<
 			array{
 				0:class-string<AppendableTypedObjectRepository>,
 				1:array{type:class-string<T1>},
-				2:array<int, array<string, scalar|null>>,
-				3:array<int, array<string, scalar|null>>
+				2:list<array<string, scalar|null>>,
+				3:list<array<string, scalar|null>>
 			}
 		>
 		*/
@@ -72,8 +70,8 @@ class DaftTypedObjectRepositoryTest extends Base
 	*
 	* @param class-string<AppendableTypedObjectRepository> $repo_type
 	* @param array{type:class-string<T1>} $repo_args
-	* @param array<int, S> $append_these
-	* @param array<int, S2> $expect_these
+	* @param list<S> $append_these
+	* @param list<S2> $expect_these
 	*/
 	public function testAppendTypedObject(
 		string $repo_type,
@@ -145,8 +143,8 @@ class DaftTypedObjectRepositoryTest extends Base
 	*
 	* @param class-string<AppendableTypedObjectRepository> $repo_type
 	* @param array{type:class-string<T1>} $repo_args
-	* @param array<int, S> $_append_these
-	* @param array<int, S2> $expect_these
+	* @param list<S> $_append_these
+	* @param list<S2> $expect_these
 	*/
 	public function testDefaultFailure(
 		string $repo_type,
@@ -209,8 +207,8 @@ class DaftTypedObjectRepositoryTest extends Base
 	*
 	* @param class-string<AppendableTypedObjectRepository> $repo_type
 	* @param array{type:class-string<T1>} $repo_args
-	* @param array<int, S> $_append_these
-	* @param array<int, S2> $expect_these
+	* @param list<S> $_append_these
+	* @param list<S2> $expect_these
 	*/
 	public function testCustomFailure(
 		string $repo_type,

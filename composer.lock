@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ae1b1175b700e3cbf28a1ba1f6ebaa34",
+    "content-hash": "8db9d091bc81a0c36daea9451ce7a1b4",
     "packages": [
         {
             "name": "signpostmarv/daft-typed-object",
@@ -2363,16 +2363,16 @@
         },
         {
             "name": "psalm/plugin-phpunit",
-            "version": "0.8.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/psalm/phpunit-psalm-plugin.git",
-                "reference": "1dcd8ff7719b78b858d7560dd2d912a55272bfbc"
+                "reference": "a577f90951095efc66f6d88eeb9ac9cd4b972ee8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/psalm/phpunit-psalm-plugin/zipball/1dcd8ff7719b78b858d7560dd2d912a55272bfbc",
-                "reference": "1dcd8ff7719b78b858d7560dd2d912a55272bfbc",
+                "url": "https://api.github.com/repos/psalm/phpunit-psalm-plugin/zipball/a577f90951095efc66f6d88eeb9ac9cd4b972ee8",
+                "reference": "a577f90951095efc66f6d88eeb9ac9cd4b972ee8",
                 "shasum": ""
             },
             "require": {
@@ -2416,7 +2416,7 @@
                 }
             ],
             "description": "Psalm plugin for PHPUnit",
-            "time": "2019-11-27T15:49:38+00:00"
+            "time": "2019-12-17T13:10:36+00:00"
         },
         {
             "name": "psr/container",
@@ -5004,6 +5004,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "signpostmarv/daft-typed-object": 20,
+        "psalm/plugin-phpunit": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": false,
