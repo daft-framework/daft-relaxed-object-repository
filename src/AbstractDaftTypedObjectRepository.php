@@ -93,7 +93,7 @@ abstract class AbstractDaftTypedObjectRepository implements DaftTypedObjectRepos
 	}
 
 	/**
-	* @param T2 $id
+	* @param array<string, scalar> $id
 	*/
 	protected static function DaftTypedObjectHash(
 		array $id

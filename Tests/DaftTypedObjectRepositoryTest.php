@@ -96,9 +96,6 @@ class DaftTypedObjectRepositoryTest extends Base
 		$testing = [];
 
 		foreach ($append_these as $i => $data) {
-			/**
-			* @var T1
-			*/
 			$object = $object_type::__fromArray($data);
 
 			$testing[$i] = $repo->AppendTypedObject($object);
@@ -340,14 +337,8 @@ class DaftTypedObjectRepositoryTest extends Base
 
 		$object_type = $repo_args['type'];
 
-		/**
-		* @var T1
-		*/
 		$object = $object_type::__fromArray($append_this);
 
-		/**
-		* @var T1
-		*/
 		$fresh = $repo->AppendTypedObject($object);
 
 		$repo->PatchTypedObjectData($fresh->ObtainId(), $patch_this);
