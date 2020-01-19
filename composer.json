@@ -45,7 +45,7 @@
 		}
 	},
 	"conflict": {
-		"vimeo/psalm": "<3.8"
+		"vimeo/psalm": "<3.8.3"
 	},
 	"suggest": {
 		"vimeo/psalm": "for static analysis & templated typehinting"
@@ -54,7 +54,7 @@
 		"php": "^7.4",
 		"ext-hash": "*",
 		"ext-json": "*",
-		"signpostmarv/daft-typed-object": "^0.5|0.5.x-dev"
+		"signpostmarv/daft-typed-object": "^0.5.1"
 	},
 	"require-dev": {
 		"ext-xdebug": "*",
@@ -66,7 +66,7 @@
 		"psalm/plugin-phpunit": "dev-master",
 		"roave/security-advisories": "dev-master",
 		"sebastian/phpcpd": "^4.1",
-		"signpostmarv/php-cs-fixer-config": "^0.14.0",
+		"signpostmarv/php-cs-fixer-config": "^0.16.3",
 		"vimeo/psalm": "^3.8"
 	}
 }

@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8db9d091bc81a0c36daea9451ce7a1b4",
+    "content-hash": "34130197760580bb07a63861f3d28f25",
     "packages": [
         {
             "name": "signpostmarv/daft-typed-object",
-            "version": "dev-master",
+            "version": "v0.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/daft-framework/Daft-Typed-Object.git",
-                "reference": "a16331d97e0248408f11e6cf08806d17951f3a1f"
+                "reference": "909e9c39b417330bdad952c2f4aa231a0f9e568b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daft-framework/Daft-Typed-Object/zipball/a16331d97e0248408f11e6cf08806d17951f3a1f",
-                "reference": "a16331d97e0248408f11e6cf08806d17951f3a1f",
+                "url": "https://api.github.com/repos/daft-framework/Daft-Typed-Object/zipball/909e9c39b417330bdad952c2f4aa231a0f9e568b",
+                "reference": "909e9c39b417330bdad952c2f4aa231a0f9e568b",
                 "shasum": ""
             },
             "require": {
@@ -25,7 +25,7 @@
                 "php": "^7.4"
             },
             "conflict": {
-                "vimeo/psalm": "<3.8"
+                "vimeo/psalm": "<3.8.3"
             },
             "require-dev": {
                 "ext-xdebug": "*",
@@ -37,7 +37,7 @@
                 "psalm/plugin-phpunit": "^0.8.0",
                 "roave/security-advisories": "dev-master",
                 "sebastian/phpcpd": "^4.1",
-                "signpostmarv/php-cs-fixer-config": "^0.14.0",
+                "signpostmarv/php-cs-fixer-config": "^0.16.3",
                 "vimeo/psalm": "^3.8"
             },
             "suggest": {
@@ -65,7 +65,7 @@
                 }
             ],
             "description": "Typed Object, a simplified version of signpostmarv/daft-object",
-            "time": "2020-01-08T18:38:51+00:00"
+            "time": "2020-01-19T11:38:08+00:00"
         }
     ],
     "packages-dev": [
@@ -207,24 +207,23 @@
         },
         {
             "name": "composer/semver",
-            "version": "1.5.0",
+            "version": "1.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/semver.git",
-                "reference": "46d9139568ccb8d9e7cdd4539cab7347568a5e2e"
+                "reference": "c6bea70230ef4dd483e6bbcab6005f682ed3a8de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/semver/zipball/46d9139568ccb8d9e7cdd4539cab7347568a5e2e",
-                "reference": "46d9139568ccb8d9e7cdd4539cab7347568a5e2e",
+                "url": "https://api.github.com/repos/composer/semver/zipball/c6bea70230ef4dd483e6bbcab6005f682ed3a8de",
+                "reference": "c6bea70230ef4dd483e6bbcab6005f682ed3a8de",
                 "shasum": ""
             },
             "require": {
                 "php": "^5.3.2 || ^7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.5 || ^5.0.5",
-                "phpunit/phpunit-mock-objects": "2.3.0 || ^3.0"
+                "phpunit/phpunit": "^4.5 || ^5.0.5"
             },
             "type": "library",
             "extra": {
@@ -265,7 +264,7 @@
                 "validation",
                 "versioning"
             ],
-            "time": "2019-03-19T17:25:45+00:00"
+            "time": "2020-01-13T12:06:48+00:00"
         },
         {
             "name": "composer/xdebug-handler",
@@ -3580,28 +3579,28 @@
         },
         {
             "name": "signpostmarv/php-cs-fixer-config",
-            "version": "v0.14.0",
+            "version": "v0.16.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SignpostMarv/PHP-CS-Fixer-Config.git",
-                "reference": "cbb2f1008803fdc4293e8841343ad9b55ad3c4c5"
+                "reference": "11d06b2667cdd17ce15ab7a0d3999fd9eb57a1ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SignpostMarv/PHP-CS-Fixer-Config/zipball/cbb2f1008803fdc4293e8841343ad9b55ad3c4c5",
-                "reference": "cbb2f1008803fdc4293e8841343ad9b55ad3c4c5",
+                "url": "https://api.github.com/repos/SignpostMarv/PHP-CS-Fixer-Config/zipball/11d06b2667cdd17ce15ab7a0d3999fd9eb57a1ef",
+                "reference": "11d06b2667cdd17ce15ab7a0d3999fd9eb57a1ef",
                 "shasum": ""
             },
             "require": {
                 "friendsofphp/php-cs-fixer": "^2.16",
-                "php": "^7.1,>=7.1.3"
+                "php": "^7.4"
             },
             "conflict": {
-                "vimeo/psalm": "<3.8"
+                "vimeo/psalm": "<3.8.3"
             },
             "require-dev": {
                 "maglnet/composer-require-checker": "^2.0",
-                "povils/phpmnd": "^2.1",
+                "povils/phpmnd": "^2.2",
                 "roave/security-advisories": "dev-master",
                 "sebastian/phpcpd": "^4.1",
                 "vimeo/psalm": "^3.8"
@@ -3623,7 +3622,7 @@
                 }
             ],
             "description": "PHP-CS-Fixer Config",
-            "time": "2019-12-31T21:58:15+00:00"
+            "time": "2020-01-19T11:16:57+00:00"
         },
         {
             "name": "symfony/config",
@@ -4765,16 +4764,16 @@
         },
         {
             "name": "vimeo/psalm",
-            "version": "3.8.2",
+            "version": "3.8.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vimeo/psalm.git",
-                "reference": "90d6b73fd8062432030ef39b7b6694b3902daa31"
+                "reference": "389af1bfc739bfdff3f9e3dc7bd6499aee51a831"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vimeo/psalm/zipball/90d6b73fd8062432030ef39b7b6694b3902daa31",
-                "reference": "90d6b73fd8062432030ef39b7b6694b3902daa31",
+                "url": "https://api.github.com/repos/vimeo/psalm/zipball/389af1bfc739bfdff3f9e3dc7bd6499aee51a831",
+                "reference": "389af1bfc739bfdff3f9e3dc7bd6499aee51a831",
                 "shasum": ""
             },
             "require": {
@@ -4794,7 +4793,7 @@
                 "openlss/lib-array2xml": "^1.0",
                 "php": "^7.1.3",
                 "sebastian/diff": "^3.0",
-                "symfony/console": "^3.3||^4.0||^5.0",
+                "symfony/console": "^3.4.17 || ^4.1.6 || ^5.0",
                 "webmozart/glob": "^4.1",
                 "webmozart/path-util": "^2.3"
             },
@@ -4804,7 +4803,6 @@
             "require-dev": {
                 "bamarni/composer-bin-plugin": "^1.2",
                 "ext-curl": "*",
-                "friendsofphp/php-cs-fixer": "^2.15",
                 "phpmyadmin/sql-parser": "^5.0",
                 "phpspec/prophecy": ">=1.9.0",
                 "phpunit/phpunit": "^7.5 || ^8.0",
@@ -4818,10 +4816,10 @@
             },
             "bin": [
                 "psalm",
-                "psalter",
                 "psalm-language-server",
                 "psalm-plugin",
-                "psalm-refactor"
+                "psalm-refactor",
+                "psalter"
             ],
             "type": "library",
             "extra": {
@@ -4856,7 +4854,7 @@
                 "inspection",
                 "php"
             ],
-            "time": "2020-01-07T13:50:31+00:00"
+            "time": "2020-01-15T03:46:19+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -5003,7 +5001,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "signpostmarv/daft-typed-object": 20,
         "psalm/plugin-phpunit": 20,
         "roave/security-advisories": 20
     },
