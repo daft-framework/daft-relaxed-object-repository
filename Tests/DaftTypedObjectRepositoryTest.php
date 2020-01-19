@@ -73,7 +73,7 @@ class DaftTypedObjectRepositoryTest extends Base
 	* @param list<S> $append_these
 	* @param list<S2> $expect_these
 	*/
-	public function testAppendTypedObject(
+	public function test_append_typed_object(
 		string $repo_type,
 		array $repo_args,
 		array $append_these,
@@ -85,8 +85,8 @@ class DaftTypedObjectRepositoryTest extends Base
 
 		$object_type = $repo_args['type'];
 
-		$this->assertGreaterThan(0, count($append_these));
-		$this->assertCount(count($append_these), $expect_these);
+		static::assertGreaterThan(0, count($append_these));
+		static::assertCount(count($append_these), $expect_these);
 
 		/**
 		* @var array<int, T1>
@@ -100,12 +100,12 @@ class DaftTypedObjectRepositoryTest extends Base
 		}
 
 		foreach ($testing as $i => $object) {
-			$this->assertSame(
+			static::assertSame(
 				$expect_these[$i],
 				$object->__toArray()
 			);
 
-			$this->assertSame(
+			static::assertSame(
 				$object,
 				$repo->RecallTypedObject($object->ObtainId())
 			);
@@ -114,21 +114,21 @@ class DaftTypedObjectRepositoryTest extends Base
 
 			$fresh1 = $repo->MaybeRecallTypedObject($object->ObtainId());
 
-			$this->assertNotNull($fresh1);
+			static::assertNotNull($fresh1);
 
 			$fresh2 = $repo->RecallTypedObject($object->ObtainId());
 
-			$this->assertNotSame($object, $fresh1);
-			$this->assertNotSame($object, $fresh2);
-			$this->assertSame($fresh1, $fresh2);
+			static::assertNotSame($object, $fresh1);
+			static::assertNotSame($object, $fresh2);
+			static::assertSame($fresh1, $fresh2);
 
-			$this->assertSame($expect_these[$i], $object->jsonSerialize());
-			$this->assertSame($expect_these[$i], $fresh1->jsonSerialize());
-			$this->assertSame($expect_these[$i], $fresh2->jsonSerialize());
+			static::assertSame($expect_these[$i], $object->jsonSerialize());
+			static::assertSame($expect_these[$i], $fresh1->jsonSerialize());
+			static::assertSame($expect_these[$i], $fresh2->jsonSerialize());
 
 			$repo->RemoveTypedObject($object->ObtainId());
 
-			$this->assertNull(
+			static::assertNull(
 				$repo->MaybeRecallTypedObject($object->ObtainId())
 			);
 		}
@@ -139,14 +139,14 @@ class DaftTypedObjectRepositoryTest extends Base
 	*
 	* @dataProvider dataProviderAppendTypedObject
 	*
-	* @depends testAppendTypedObject
+	* @depends test_append_typed_object
 	*
 	* @param class-string<AppendableTypedObjectRepository> $repo_type
 	* @param array{type:class-string<T1>} $repo_args
 	* @param list<S> $_append_these
 	* @param list<S2> $expect_these
 	*/
-	public function testDefaultFailure(
+	public function test_default_failure(
 		string $repo_type,
 		array $repo_args,
 		array $_append_these,
@@ -175,7 +175,7 @@ class DaftTypedObjectRepositoryTest extends Base
 			*
 			* @return T[K]
 			*/
-			function ($property, $value) use ($object_type) {
+			static function ($property, $value) use ($object_type) {
 				/**
 				* @var T[K]
 				*/
@@ -203,14 +203,14 @@ class DaftTypedObjectRepositoryTest extends Base
 	*
 	* @dataProvider dataProviderAppendTypedObject
 	*
-	* @depends testAppendTypedObject
+	* @depends test_append_typed_object
 	*
 	* @param class-string<AppendableTypedObjectRepository> $repo_type
 	* @param array{type:class-string<T1>} $repo_args
 	* @param list<S> $_append_these
 	* @param list<S2> $expect_these
 	*/
-	public function testCustomFailure(
+	public function test_custom_failure(
 		string $repo_type,
 		array $repo_args,
 		array $_append_these,
@@ -239,7 +239,7 @@ class DaftTypedObjectRepositoryTest extends Base
 			*
 			* @return scalar|array|object|null
 			*/
-			function ($property, $value) use ($object_type) {
+			static function ($property, $value) use ($object_type) {
 				/**
 				* @var scalar|array|object|null
 				*/
@@ -312,7 +312,7 @@ class DaftTypedObjectRepositoryTest extends Base
 	*
 	* @dataProvider dataProviderPatchObject
 	*
-	* @depends testAppendTypedObject
+	* @depends test_append_typed_object
 	*
 	* @param class-string<AppendableTypedObjectRepository&PatchableObjectRepository> $repo_type
 	* @param array{type:class-string<T1>} $repo_args
@@ -320,7 +320,7 @@ class DaftTypedObjectRepositoryTest extends Base
 	* @param array<string, scalar|null> $patch_this
 	* @param array<string, scalar|null> $expect_this
 	*/
-	public function testPatchObject(
+	public function test_patch_object(
 		string $repo_type,
 		array $repo_args,
 		array $append_this,
@@ -339,7 +339,7 @@ class DaftTypedObjectRepositoryTest extends Base
 
 		$repo->PatchTypedObjectData($fresh->ObtainId(), $patch_this);
 
-		$this->assertSame(
+		static::assertSame(
 			$expect_this,
 			$repo->RecallTypedObject($fresh->ObtainId())->__toArray()
 		);
