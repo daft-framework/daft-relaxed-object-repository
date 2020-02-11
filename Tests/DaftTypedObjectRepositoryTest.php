@@ -180,7 +180,7 @@ class DaftTypedObjectRepositoryTest extends Base
 				* @var T[K]
 				*/
 				return $object_type::PropertyScalarOrNullToValue(
-					(string) $property,
+					$property,
 					$value
 				);
 			},
@@ -244,7 +244,7 @@ class DaftTypedObjectRepositoryTest extends Base
 				* @var scalar|array|object|null
 				*/
 				return $object_type::PropertyScalarOrNullToValue(
-					(string) $property,
+					$property,
 					$value
 				);
 			},
