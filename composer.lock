@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e6fa8ef7fb8e7bdbd7fc94d71312b9a1",
+    "content-hash": "50df49b87012dff231afeb470f67c292",
     "packages": [
         {
             "name": "signpostmarv/daft-typed-object",
