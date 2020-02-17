@@ -97,13 +97,11 @@ class DaftTypedObjectMemoryRepository extends AbstractDaftTypedObjectRepository 
 		$this->data[$hash] = $object->__toArray();
 	}
 
+	/**
+	 * @param T2 $id
+	 */
 	public function RemoveTypedObject(array $id) : void
 	{
-		/**
-		 * @var T2
-		 */
-		$id = $id;
-
 		$hash = static::DaftTypedObjectHash($id);
 
 		$this->ForgetTypedObject($id);
