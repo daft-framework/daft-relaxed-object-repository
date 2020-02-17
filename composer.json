@@ -29,10 +29,10 @@
 		"tests": [
 			"phpunit",
 			"infection --min-msi=100",
+			"psalm --shepherd --show-info=false",
 			"@static-analysis"
 		],
 		"static-analysis": [
-			"psalm --shepherd --show-info=false",
 			"phpcpd src Tests",
 			"phpmnd ./ --exclude=./phpunit/ --exclude=./vendor/ --non-zero-exit-on-violation --hint",
 			"composer-require-checker check ./composer.json",
