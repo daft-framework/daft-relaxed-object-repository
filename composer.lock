@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "328343f05a3cfa19243d8a8ec3fa1cae",
+    "content-hash": "e6fa8ef7fb8e7bdbd7fc94d71312b9a1",
     "packages": [
         {
             "name": "signpostmarv/daft-typed-object",
@@ -3624,16 +3624,16 @@
         },
         {
             "name": "signpostmarv/php-cs-fixer-config",
-            "version": "v0.16.3",
+            "version": "0.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SignpostMarv/PHP-CS-Fixer-Config.git",
-                "reference": "11d06b2667cdd17ce15ab7a0d3999fd9eb57a1ef"
+                "reference": "feed4ec2864dc4670f62af9dc15565ea1a3aadc5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SignpostMarv/PHP-CS-Fixer-Config/zipball/11d06b2667cdd17ce15ab7a0d3999fd9eb57a1ef",
-                "reference": "11d06b2667cdd17ce15ab7a0d3999fd9eb57a1ef",
+                "url": "https://api.github.com/repos/SignpostMarv/PHP-CS-Fixer-Config/zipball/feed4ec2864dc4670f62af9dc15565ea1a3aadc5",
+                "reference": "feed4ec2864dc4670f62af9dc15565ea1a3aadc5",
                 "shasum": ""
             },
             "require": {
@@ -3667,7 +3667,7 @@
                 }
             ],
             "description": "PHP-CS-Fixer Config",
-            "time": "2020-01-19T11:16:57+00:00"
+            "time": "2020-02-12T13:54:23+00:00"
         },
         {
             "name": "symfony/config",
