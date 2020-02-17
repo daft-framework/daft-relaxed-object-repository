@@ -21,25 +21,25 @@ class DaftTypedObjectRepositoryTest extends Base
 {
 	/**
 	 * @return list<
-		array{
-			0:class-string<AppendableTypedObjectRepository>,
-			1:array{type:class-string<T1>},
-			2:list<array<string, scalar|null>>,
-			3:list<array<string, scalar|null>>
-		}
-	>
+	 *	array{
+	 *		0:class-string<AppendableTypedObjectRepository>,
+	 *		1:array{type:class-string<T1>},
+	 *		2:list<array<string, scalar|null>>,
+	 *		3:list<array<string, scalar|null>>
+	 *	}
+	 * >
 	 */
 	public function dataProviderAppendTypedObject() : array
 	{
 		/**
 		 * @var list<
-			array{
-				0:class-string<AppendableTypedObjectRepository>,
-				1:array{type:class-string<T1>},
-				2:list<array<string, scalar|null>>,
-				3:list<array<string, scalar|null>>
-			}
-		>
+		 *	array{
+		 *		0:class-string<AppendableTypedObjectRepository>,
+		 *		1:array{type:class-string<T1>},
+		 *		2:list<array<string, scalar|null>>,
+		 *		3:list<array<string, scalar|null>>
+		 *	}
+		 * >
 		 */
 		return [
 			[
@@ -264,27 +264,27 @@ class DaftTypedObjectRepositoryTest extends Base
 
 	/**
 	 * @return list<
-		array{
-			0:class-string<AppendableTypedObjectRepository&PatchableObjectRepository>,
-			1:array{type:class-string<T1>},
-			2:array<string, scalar|null>,
-			3:array<string, scalar|null>,
-			4:array<string, scalar|null>
-		}
-	>
+	 *	array{
+	 *		0:class-string<AppendableTypedObjectRepository&PatchableObjectRepository>,
+	 *		1:array{type:class-string<T1>},
+	 *		2:array<string, scalar|null>,
+	 *		3:array<string, scalar|null>,
+	 *		4:array<string, scalar|null>
+	 *	}
+	 * >
 	 */
 	public function dataProviderPatchObject() : array
 	{
 		/**
 		 * @var list<
-			array{
-				0:class-string<AppendableTypedObjectRepository&PatchableObjectRepository>,
-				1:array{type:class-string<T1>},
-				2:array<string, scalar|null>,
-				3:array<string, scalar|null>,
-				4:array<string, scalar|null>
-			}
-		>
+		 *	array{
+		 *		0:class-string<AppendableTypedObjectRepository&PatchableObjectRepository>,
+		 *		1:array{type:class-string<T1>},
+		 *		2:array<string, scalar|null>,
+		 *		3:array<string, scalar|null>,
+		 *		4:array<string, scalar|null>
+		 *	}
+		 * >
 		 */
 		return [
 			[
