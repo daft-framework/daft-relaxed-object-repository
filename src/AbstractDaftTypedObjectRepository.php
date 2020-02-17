@@ -10,36 +10,36 @@ use RuntimeException;
 use Throwable;
 
 /**
-* @template T1 as DaftTypedObjectForRepository
-* @template T2 as array<string, scalar>
-*
-* @template-implements DaftTypedObjectRepository<T1, T2>
-*/
+ * @template T1 as DaftTypedObjectForRepository
+ * @template T2 as array<string, scalar>
+ *
+ * @template-implements DaftTypedObjectRepository<T1, T2>
+ */
 abstract class AbstractDaftTypedObjectRepository implements DaftTypedObjectRepository
 {
 	/**
-	* @readonly
-	*
-	* @var class-string<T1>
-	*/
+	 * @readonly
+	 *
+	 * @var class-string<T1>
+	 */
 	public string $type;
 
 	/**
-	* @var array<string, T1>
-	*/
+	 * @var array<string, T1>
+	 */
 	protected array $memory = [];
 
 	/**
-	* @param array{type:class-string<T1>} $options
-	*/
+	 * @param array{type:class-string<T1>} $options
+	 */
 	public function __construct(array $options)
 	{
 		$this->type = $options['type'];
 	}
 
 	/**
-	* @param T1 $object
-	*/
+	 * @param T1 $object
+	 */
 	public function UpdateTypedObject(
 		DaftTypedObjectForRepository $object
 	) : void {
@@ -49,8 +49,8 @@ abstract class AbstractDaftTypedObjectRepository implements DaftTypedObjectRepos
 	}
 
 	/**
-	* @param T2 $id
-	*/
+	 * @param T2 $id
+	 */
 	public function ForgetTypedObject(array $id) : void
 	{
 		$hash = static::DaftTypedObjectHash($id);
@@ -59,24 +59,24 @@ abstract class AbstractDaftTypedObjectRepository implements DaftTypedObjectRepos
 	}
 
 	/**
-	* @param T2 $id
-	*
-	* @return T1|null
-	*/
+	 * @param T2 $id
+	 *
+	 * @return T1|null
+	 */
 	public function MaybeRecallTypedObject(
 		array $id
 	) : ? DaftTypedObjectForRepository {
 		$hash = static::DaftTypedObjectHash($id);
 
 		/**
-		* @var T1|null
-		*/
+		 * @var T1|null
+		 */
 		return $this->memory[$hash] ?? null;
 	}
 
 	/**
-	* @param T2 $id
-	*/
+	 * @param T2 $id
+	 */
 	public function RecallTypedObject(
 		array $id,
 		Throwable $not_found = null
@@ -93,8 +93,8 @@ abstract class AbstractDaftTypedObjectRepository implements DaftTypedObjectRepos
 	}
 
 	/**
-	* @param array<string, scalar> $id
-	*/
+	 * @param array<string, scalar> $id
+	 */
 	protected static function DaftTypedObjectHash(
 		array $id
 	) : string {

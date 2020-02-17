@@ -14,40 +14,40 @@ use SignpostMarv\DaftTypedObject\PatchableObjectRepository;
 use Throwable;
 
 /**
-* @template T1 as MutableForRepository
-* @template T2 as array{id:int}
-* @template S1 as array{name:string}
-*
-* @template-extends AbstractDaftTypedObjectRepository<T1, T2>
-*
-* @template-implements AppendableTypedObjectRepository<T1, T2, S1>
-* @template-implements PatchableObjectRepository<T1, T2, S1>
-*/
+ * @template T1 as MutableForRepository
+ * @template T2 as array{id:int}
+ * @template S1 as array{name:string}
+ *
+ * @template-extends AbstractDaftTypedObjectRepository<T1, T2>
+ *
+ * @template-implements AppendableTypedObjectRepository<T1, T2, S1>
+ * @template-implements PatchableObjectRepository<T1, T2, S1>
+ */
 class DaftTypedObjectMemoryRepository extends AbstractDaftTypedObjectRepository implements
 		AppendableTypedObjectRepository,
 		PatchableObjectRepository
 {
 	/**
-	* @var array<string, array{id:int, name:string}>
-	*/
+	 * @var array<string, array{id:int, name:string}>
+	 */
 	protected array $data = [];
 
 	/**
-	* @var array<string, T1>
-	*/
+	 * @var array<string, T1>
+	 */
 	protected array $memory = [];
 
 	/**
-	* @param T1 $object
-	*
-	* @return T1
-	*/
+	 * @param T1 $object
+	 *
+	 * @return T1
+	 */
 	public function AppendTypedObject(
 		DaftTypedObjectForRepository $object
 	) : DaftTypedObjectForRepository {
 		/**
-		* @var T1
-		*/
+		 * @var T1
+		 */
 		return $this->AppendTypedObjectFromArray([
 			'name' => $object->name,
 		]);
@@ -70,15 +70,15 @@ class DaftTypedObjectMemoryRepository extends AbstractDaftTypedObjectRepository 
 		$type = $this->type;
 
 		/**
-		* @var T1
-		*/
+		 * @var T1
+		 */
 		$object = new $type($data);
 
 		$this->memory[$hash] = $object;
 
 		/**
-		* @var T1
-		*/
+		 * @var T1
+		 */
 		return $object;
 	}
 
@@ -86,8 +86,8 @@ class DaftTypedObjectMemoryRepository extends AbstractDaftTypedObjectRepository 
 		DaftTypedObjectForRepository $object
 	) : void {
 		/**
-		* @var T2
-		*/
+		 * @var T2
+		 */
 		$id = $object->ObtainId();
 
 		$hash = static::DaftTypedObjectHash($id);
@@ -100,8 +100,8 @@ class DaftTypedObjectMemoryRepository extends AbstractDaftTypedObjectRepository 
 	public function RemoveTypedObject(array $id) : void
 	{
 		/**
-		* @var T2
-		*/
+		 * @var T2
+		 */
 		$id = $id;
 
 		$hash = static::DaftTypedObjectHash($id);
@@ -111,8 +111,8 @@ class DaftTypedObjectMemoryRepository extends AbstractDaftTypedObjectRepository 
 	}
 
 	/**
-	* @return T1|null
-	*/
+	 * @return T1|null
+	 */
 	public function MaybeRecallTypedObject(
 		array $id
 	) : ? DaftTypedObjectForRepository {
@@ -127,8 +127,8 @@ class DaftTypedObjectMemoryRepository extends AbstractDaftTypedObjectRepository 
 
 			if (is_array($row)) {
 				/**
-				* @var T1
-				*/
+				 * @var T1
+				 */
 				$object = $type::__fromArray($row);
 
 				$this->UpdateTypedObject($object);
@@ -143,28 +143,28 @@ class DaftTypedObjectMemoryRepository extends AbstractDaftTypedObjectRepository 
 	}
 
 	/**
-	* @param T2 $id
-	* @param S1 $data
-	*/
+	 * @param T2 $id
+	 * @param S1 $data
+	 */
 	public function PatchTypedObjectData(array $id, array $data) : void
 	{
 		$type = $this->type;
 
 		/**
-		* @var array<string, scalar|null>
-		*/
+		 * @var array<string, scalar|null>
+		 */
 		$id = $id;
 
 		/**
-		* @var array<string, scalar|null>
-		*/
+		 * @var array<string, scalar|null>
+		 */
 		$data = $data;
 
 		$from_array_args = $id + $data;
 
 		/**
-		* @var T1
-		*/
+		 * @var T1
+		 */
 		$object = $type::__fromArray($from_array_args);
 
 		$this->UpdateTypedObject($object);

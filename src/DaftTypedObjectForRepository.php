@@ -7,12 +7,12 @@ declare(strict_types=1);
 namespace SignpostMarv\DaftTypedObject;
 
 /**
-* @template T as array<string, scalar>
-*/
+ * @template T as array<string, scalar>
+ */
 interface DaftTypedObjectForRepository extends DaftTypedObject
 {
 	/**
-	* @return T
-	*/
+	 * @return T
+	 */
 	public function ObtainId() : array;
 }

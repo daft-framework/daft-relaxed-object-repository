@@ -12,15 +12,15 @@ use function random_bytes;
 use RuntimeException;
 
 /**
-* @template S as array<string, scalar|null>
-* @template S2 as array<string, scalar|null>
-* @template T as array<string, scalar|array|object|null>
-* @template T1 as DaftTypedObjectForRepository
-*/
+ * @template S as array<string, scalar|null>
+ * @template S2 as array<string, scalar|null>
+ * @template T as array<string, scalar|array|object|null>
+ * @template T1 as DaftTypedObjectForRepository
+ */
 class DaftTypedObjectRepositoryTest extends Base
 {
 	/**
-	* @return list<
+	 * @return list<
 		array{
 			0:class-string<AppendableTypedObjectRepository>,
 			1:array{type:class-string<T1>},
@@ -28,11 +28,11 @@ class DaftTypedObjectRepositoryTest extends Base
 			3:list<array<string, scalar|null>>
 		}
 	>
-	*/
+	 */
 	public function dataProviderAppendTypedObject() : array
 	{
 		/**
-		* @var list<
+		 * @var list<
 			array{
 				0:class-string<AppendableTypedObjectRepository>,
 				1:array{type:class-string<T1>},
@@ -40,7 +40,7 @@ class DaftTypedObjectRepositoryTest extends Base
 				3:list<array<string, scalar|null>>
 			}
 		>
-		*/
+		 */
 		return [
 			[
 				Fixtures\DaftTypedObjectMemoryRepository::class,
@@ -64,15 +64,15 @@ class DaftTypedObjectRepositoryTest extends Base
 	}
 
 	/**
-	* @template K as key-of<S>
-	*
-	* @dataProvider dataProviderAppendTypedObject
-	*
-	* @param class-string<AppendableTypedObjectRepository> $repo_type
-	* @param array{type:class-string<T1>} $repo_args
-	* @param list<S> $append_these
-	* @param list<S2> $expect_these
-	*/
+	 * @template K as key-of<S>
+	 *
+	 * @dataProvider dataProviderAppendTypedObject
+	 *
+	 * @param class-string<AppendableTypedObjectRepository> $repo_type
+	 * @param array{type:class-string<T1>} $repo_args
+	 * @param list<S> $append_these
+	 * @param list<S2> $expect_these
+	 */
 	public function test_append_typed_object(
 		string $repo_type,
 		array $repo_args,
@@ -89,8 +89,8 @@ class DaftTypedObjectRepositoryTest extends Base
 		static::assertCount(count($append_these), $expect_these);
 
 		/**
-		* @var array<int, T1>
-		*/
+		 * @var array<int, T1>
+		 */
 		$testing = [];
 
 		foreach ($append_these as $i => $data) {
@@ -135,17 +135,17 @@ class DaftTypedObjectRepositoryTest extends Base
 	}
 
 	/**
-	* @template K as key-of<S>
-	*
-	* @dataProvider dataProviderAppendTypedObject
-	*
-	* @depends test_append_typed_object
-	*
-	* @param class-string<AppendableTypedObjectRepository> $repo_type
-	* @param array{type:class-string<T1>} $repo_args
-	* @param list<S> $_append_these
-	* @param list<S2> $expect_these
-	*/
+	 * @template K as key-of<S>
+	 *
+	 * @dataProvider dataProviderAppendTypedObject
+	 *
+	 * @depends test_append_typed_object
+	 *
+	 * @param class-string<AppendableTypedObjectRepository> $repo_type
+	 * @param array{type:class-string<T1>} $repo_args
+	 * @param list<S> $_append_these
+	 * @param list<S2> $expect_these
+	 */
 	public function test_default_failure(
 		string $repo_type,
 		array $repo_args,
@@ -161,24 +161,24 @@ class DaftTypedObjectRepositoryTest extends Base
 		$data = current($expect_these);
 
 		/**
-		* @var array<int, K>
-		*/
+		 * @var array<int, K>
+		 */
 		$data_keys = array_keys($data);
 
 		/**
-		* @var T
-		*/
+		 * @var T
+		 */
 		$object_args = array_combine($data_keys, array_map(
 			/**
-			* @param K $property
-			* @param S[K] $value
-			*
-			* @return T[K]
-			*/
+			 * @param K $property
+			 * @param S[K] $value
+			 *
+			 * @return T[K]
+			 */
 			static function ($property, $value) use ($object_type) {
 				/**
-				* @var T[K]
-				*/
+				 * @var T[K]
+				 */
 				return $object_type::PropertyScalarOrNullToValue(
 					$property,
 					$value
@@ -199,17 +199,17 @@ class DaftTypedObjectRepositoryTest extends Base
 	}
 
 	/**
-	* @template K as key-of<S>
-	*
-	* @dataProvider dataProviderAppendTypedObject
-	*
-	* @depends test_append_typed_object
-	*
-	* @param class-string<AppendableTypedObjectRepository> $repo_type
-	* @param array{type:class-string<T1>} $repo_args
-	* @param list<S> $_append_these
-	* @param list<S2> $expect_these
-	*/
+	 * @template K as key-of<S>
+	 *
+	 * @dataProvider dataProviderAppendTypedObject
+	 *
+	 * @depends test_append_typed_object
+	 *
+	 * @param class-string<AppendableTypedObjectRepository> $repo_type
+	 * @param array{type:class-string<T1>} $repo_args
+	 * @param list<S> $_append_these
+	 * @param list<S2> $expect_these
+	 */
 	public function test_custom_failure(
 		string $repo_type,
 		array $repo_args,
@@ -225,24 +225,24 @@ class DaftTypedObjectRepositoryTest extends Base
 		$data = current($expect_these);
 
 		/**
-		* @var array<int, K>
-		*/
+		 * @var array<int, K>
+		 */
 		$data_keys = array_keys($data);
 
 		/**
-		* @var T
-		*/
+		 * @var T
+		 */
 		$object_args = array_combine($data_keys, array_map(
 			/**
-			* @param K $property
-			* @param S[K] $value
-			*
-			* @return scalar|array|object|null
-			*/
+			 * @param K $property
+			 * @param S[K] $value
+			 *
+			 * @return scalar|array|object|null
+			 */
 			static function ($property, $value) use ($object_type) {
 				/**
-				* @var scalar|array|object|null
-				*/
+				 * @var scalar|array|object|null
+				 */
 				return $object_type::PropertyScalarOrNullToValue(
 					$property,
 					$value
@@ -263,7 +263,7 @@ class DaftTypedObjectRepositoryTest extends Base
 	}
 
 	/**
-	* @return list<
+	 * @return list<
 		array{
 			0:class-string<AppendableTypedObjectRepository&PatchableObjectRepository>,
 			1:array{type:class-string<T1>},
@@ -272,11 +272,11 @@ class DaftTypedObjectRepositoryTest extends Base
 			4:array<string, scalar|null>
 		}
 	>
-	*/
+	 */
 	public function dataProviderPatchObject() : array
 	{
 		/**
-		* @var list<
+		 * @var list<
 			array{
 				0:class-string<AppendableTypedObjectRepository&PatchableObjectRepository>,
 				1:array{type:class-string<T1>},
@@ -285,7 +285,7 @@ class DaftTypedObjectRepositoryTest extends Base
 				4:array<string, scalar|null>
 			}
 		>
-		*/
+		 */
 		return [
 			[
 				Fixtures\DaftTypedObjectMemoryRepository::class,
@@ -308,18 +308,18 @@ class DaftTypedObjectRepositoryTest extends Base
 	}
 
 	/**
-	* @template K as key-of<S>
-	*
-	* @dataProvider dataProviderPatchObject
-	*
-	* @depends test_append_typed_object
-	*
-	* @param class-string<AppendableTypedObjectRepository&PatchableObjectRepository> $repo_type
-	* @param array{type:class-string<T1>} $repo_args
-	* @param array<string, scalar|null> $append_this
-	* @param array<string, scalar|null> $patch_this
-	* @param array<string, scalar|null> $expect_this
-	*/
+	 * @template K as key-of<S>
+	 *
+	 * @dataProvider dataProviderPatchObject
+	 *
+	 * @depends test_append_typed_object
+	 *
+	 * @param class-string<AppendableTypedObjectRepository&PatchableObjectRepository> $repo_type
+	 * @param array{type:class-string<T1>} $repo_args
+	 * @param array<string, scalar|null> $append_this
+	 * @param array<string, scalar|null> $patch_this
+	 * @param array<string, scalar|null> $expect_this
+	 */
 	public function test_patch_object(
 		string $repo_type,
 		array $repo_args,
