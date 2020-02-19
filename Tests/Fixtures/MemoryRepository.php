@@ -31,7 +31,7 @@ class MemoryRepository extends AbstractObjectRepository implements
 		PatchableObjectRepository
 {
 	/**
-	 * @var array<string, array{id:int, name:string}>
+	 * @var array<string, S2>
 	 */
 	protected array $data = [];
 
@@ -61,6 +61,9 @@ class MemoryRepository extends AbstractObjectRepository implements
 	) : object {
 		$new_id = max(0, count($this->data)) + 1;
 
+		/**
+		 * @var S2
+		 */
 		$data = [
 			'id' => $new_id,
 			'name' => $data['name'],
@@ -121,7 +124,7 @@ class MemoryRepository extends AbstractObjectRepository implements
 
 			$row = $this->data[$hash] ?? null;
 
-			if (is_array($row)) {
+			if (null !== $row) {
 				$object = $this->ConvertSimpleArrayToObject($row);
 
 				$this->UpdateObject($object);
