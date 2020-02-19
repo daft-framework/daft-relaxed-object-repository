@@ -14,7 +14,7 @@ use SignpostMarv\DaftRelaxedObjectRepository\PatchableObjectRepository;
 use Throwable;
 
 /**
- * @template T1 as Thing
+ * @template T1 as object
  * @template T2 as array{id:int}
  * @template S1 as array{name:string}
  * @template S2 as array{id:int, name:string}
@@ -25,7 +25,7 @@ use Throwable;
  * @template-implements ConvertingRepository<T1, S2, T2>
  * @template-implements PatchableObjectRepository<T1, T2, S1>
  */
-class MemoryRepository extends AbstractObjectRepository implements
+abstract class MemoryRepository extends AbstractObjectRepository implements
 		AppendableObjectRepository,
 		ConvertingRepository,
 		PatchableObjectRepository
@@ -39,22 +39,6 @@ class MemoryRepository extends AbstractObjectRepository implements
 	 * @var array<string, T1>
 	 */
 	protected array $memory = [];
-
-	/**
-	 * @param T1 $object
-	 *
-	 * @return T1
-	 */
-	public function AppendObject(
-		object $object
-	) : object {
-		/**
-		 * @var T1
-		 */
-		return $this->AppendObjectFromArray([
-			'name' => $object->name,
-		]);
-	}
 
 	public function AppendObjectFromArray(
 		array $data
@@ -172,21 +156,6 @@ class MemoryRepository extends AbstractObjectRepository implements
 		/** @var T2 */
 		return [
 			'id' => $object->id,
-		];
-	}
-
-	public function ConvertSimpleArrayToObject(array $array) : object
-	{
-		/** @var T1 */
-		return new Thing($array['id'], $array['name']);
-	}
-
-	public function ConvertObjectToSimpleArray(object $object) : array
-	{
-		/** @var S2 */
-		return [
-			'id' => $object->id,
-			'name' => $object->name,
 		];
 	}
 }

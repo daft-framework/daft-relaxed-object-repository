@@ -44,7 +44,7 @@ class ObjectRepositoryTest extends Base
 		 */
 		return [
 			[
-				Fixtures\MemoryRepository::class,
+				Fixtures\ThingMemoryRepository::class,
 				[
 					'type' => Fixtures\Thing::class,
 				],
@@ -224,7 +224,7 @@ class ObjectRepositoryTest extends Base
 		 */
 		return [
 			[
-				Fixtures\MemoryRepository::class,
+				Fixtures\ThingMemoryRepository::class,
 				[
 					'type' => Fixtures\Thing::class,
 				],
