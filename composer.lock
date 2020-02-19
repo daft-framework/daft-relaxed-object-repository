@@ -4,70 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "50df49b87012dff231afeb470f67c292",
-    "packages": [
-        {
-            "name": "signpostmarv/daft-typed-object",
-            "version": "v0.5.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/daft-framework/Daft-Typed-Object.git",
-                "reference": "ade9a56fe53ff1b7f8750aacae9f616e0b57f423"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/daft-framework/Daft-Typed-Object/zipball/ade9a56fe53ff1b7f8750aacae9f616e0b57f423",
-                "reference": "ade9a56fe53ff1b7f8750aacae9f616e0b57f423",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "php": "^7.4"
-            },
-            "conflict": {
-                "vimeo/psalm": "<3.8.3"
-            },
-            "require-dev": {
-                "ext-xdebug": "*",
-                "infection/infection": "^0.15.1",
-                "maglnet/composer-require-checker": "^2.0",
-                "php-coveralls/php-coveralls": "^2.2",
-                "phpunit/phpunit": "^8.5",
-                "povils/phpmnd": "^2.2",
-                "psalm/plugin-phpunit": "^0.8.1",
-                "roave/security-advisories": "dev-master",
-                "sebastian/phpcpd": "^4.1",
-                "signpostmarv/php-cs-fixer-config": "^0.16.3",
-                "vimeo/psalm": "^3.8"
-            },
-            "suggest": {
-                "vimeo/psalm": "for static analysis & templated typehinting"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "0.5.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "SignpostMarv\\DaftTypedObject\\": "./src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "SignpostMarv",
-                    "email": "me@signpostmarv.name"
-                }
-            ],
-            "description": "Typed Object, a simplified version of signpostmarv/daft-object",
-            "time": "2020-02-11T20:43:05+00:00"
-        }
-    ],
+    "content-hash": "d0bcfc900902396c026b93a414d38ef5",
+    "packages": [],
     "packages-dev": [
         {
             "name": "amphp/amp",
@@ -1269,9 +1207,9 @@
             "authors": [
                 {
                     "name": "Christian Weiske",
-                    "role": "Developer",
                     "email": "cweiske@cweiske.de",
-                    "homepage": "http://github.com/cweiske/jsonmapper/"
+                    "homepage": "http://github.com/cweiske/jsonmapper/",
+                    "role": "Developer"
                 }
             ],
             "description": "Map nested JSON structures onto PHP classes",
@@ -1559,18 +1497,18 @@
             "authors": [
                 {
                     "name": "Arne Blankerts",
-                    "role": "Developer",
-                    "email": "arne@blankerts.de"
+                    "email": "arne@blankerts.de",
+                    "role": "Developer"
                 },
                 {
                     "name": "Sebastian Heuer",
-                    "role": "Developer",
-                    "email": "sebastian@phpeople.de"
+                    "email": "sebastian@phpeople.de",
+                    "role": "Developer"
                 },
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "Developer",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "Developer"
                 }
             ],
             "description": "Library for handling version information and constraints",
@@ -2026,8 +1964,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "lead",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
                 }
             ],
             "description": "FilterIterator implementation that filters files based on a list of suffixes.",
@@ -2068,8 +2006,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "lead",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
                 }
             ],
             "description": "Simple template engine.",
@@ -2117,8 +2055,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "lead",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
                 }
             ],
             "description": "Utility class for timing",
@@ -3381,8 +3319,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "lead",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
                 }
             ],
             "description": "Copy/Paste Detector (CPD) for PHP code.",
@@ -3522,8 +3460,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "lead",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
                 }
             ],
             "description": "Collection of value objects that represent the types of the PHP type system",
@@ -3565,8 +3503,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "lead",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
                 }
             ],
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
@@ -4759,8 +4697,8 @@
             "authors": [
                 {
                     "name": "Arne Blankerts",
-                    "role": "lead",
-                    "email": "arne@blankerts.de"
+                    "email": "arne@blankerts.de",
+                    "role": "lead"
                 }
             ],
             "description": "The classes contained within this repository extend the standard DOM to use exceptions at all occasions of errors instead of PHP warnings or notices. They also add various custom methods and shortcuts for convenience and to simplify the usage of DOM.",
@@ -5057,6 +4995,7 @@
         "ext-json": "*"
     },
     "platform-dev": {
+        "ext-ctype": "*",
         "ext-xdebug": "*"
     }
 }

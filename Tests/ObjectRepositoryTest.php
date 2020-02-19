@@ -4,9 +4,10 @@
 */
 declare(strict_types=1);
 
-namespace SignpostMarv\DaftTypedObject;
+namespace SignpostMarv\DaftRelaxedObjectRepository;
 
 use Exception;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase as Base;
 use function random_bytes;
 use RuntimeException;
@@ -15,26 +16,26 @@ use RuntimeException;
  * @template S as array<string, scalar|null>
  * @template S2 as array<string, scalar|null>
  * @template T as array<string, scalar|array|object|null>
- * @template T1 as DaftTypedObjectForRepository
+ * @template T1 as object
  */
-class DaftTypedObjectRepositoryTest extends Base
+class ObjectRepositoryTest extends Base
 {
 	/**
 	 * @return list<
 	 *	array{
-	 *		0:class-string<AppendableTypedObjectRepository>,
+	 *		0:class-string<AppendableObjectRepository&ConvertingRepository>,
 	 *		1:array{type:class-string<T1>},
 	 *		2:list<array<string, scalar|null>>,
 	 *		3:list<array<string, scalar|null>>
 	 *	}
 	 * >
 	 */
-	public function dataProviderAppendTypedObject() : array
+	public function dataProviderAppendObject() : array
 	{
 		/**
 		 * @var list<
 		 *	array{
-		 *		0:class-string<AppendableTypedObjectRepository>,
+		 *		0:class-string<AppendableObjectRepository&ConvertingRepository>,
 		 *		1:array{type:class-string<T1>},
 		 *		2:list<array<string, scalar|null>>,
 		 *		3:list<array<string, scalar|null>>
@@ -43,9 +44,9 @@ class DaftTypedObjectRepositoryTest extends Base
 		 */
 		return [
 			[
-				Fixtures\DaftTypedObjectMemoryRepository::class,
+				Fixtures\MemoryRepository::class,
 				[
-					'type' => Fixtures\MutableForRepository::class,
+					'type' => Fixtures\Thing::class,
 				],
 				[
 					[
@@ -66,9 +67,9 @@ class DaftTypedObjectRepositoryTest extends Base
 	/**
 	 * @template K as key-of<S>
 	 *
-	 * @dataProvider dataProviderAppendTypedObject
+	 * @dataProvider dataProviderAppendObject
 	 *
-	 * @param class-string<AppendableTypedObjectRepository> $repo_type
+	 * @param class-string<AppendableObjectRepository&ConvertingRepository> $repo_type
 	 * @param array{type:class-string<T1>} $repo_args
 	 * @param list<S> $append_these
 	 * @param list<S2> $expect_these
@@ -83,8 +84,6 @@ class DaftTypedObjectRepositoryTest extends Base
 			$repo_args
 		);
 
-		$object_type = $repo_args['type'];
-
 		static::assertGreaterThan(0, count($append_these));
 		static::assertCount(count($append_these), $expect_these);
 
@@ -94,42 +93,37 @@ class DaftTypedObjectRepositoryTest extends Base
 		$testing = [];
 
 		foreach ($append_these as $i => $data) {
-			$object = $object_type::__fromArray($data);
+			$object = $repo->ConvertSimpleArrayToObject($data);
 
-			$testing[$i] = $repo->AppendTypedObject($object);
+			$testing[$i] = $repo->AppendObject($object);
 		}
 
-		foreach ($testing as $i => $object) {
-			static::assertSame(
-				$expect_these[$i],
-				$object->__toArray()
-			);
+		foreach ($testing as $object) {
+			$id = $repo->ObtainIdFromObject($object);
 
 			static::assertSame(
 				$object,
-				$repo->RecallTypedObject($object->ObtainId())
+				$repo->RecallObject($id)
 			);
 
-			$repo->ForgetTypedObject($object->ObtainId());
+			$repo->ForgetObject($id);
 
-			$fresh1 = $repo->MaybeRecallTypedObject($object->ObtainId());
+			$fresh1 = $repo->MaybeRecallObject($id);
 
 			static::assertNotNull($fresh1);
 
-			$fresh2 = $repo->RecallTypedObject($object->ObtainId());
+			$id = $repo->ObtainIdFromObject($object);
+
+			$fresh2 = $repo->RecallObject($id);
 
 			static::assertNotSame($object, $fresh1);
 			static::assertNotSame($object, $fresh2);
 			static::assertSame($fresh1, $fresh2);
 
-			static::assertSame($expect_these[$i], $object->jsonSerialize());
-			static::assertSame($expect_these[$i], $fresh1->jsonSerialize());
-			static::assertSame($expect_these[$i], $fresh2->jsonSerialize());
-
-			$repo->RemoveTypedObject($object->ObtainId());
+			$repo->RemoveObject($id);
 
 			static::assertNull(
-				$repo->MaybeRecallTypedObject($object->ObtainId())
+				$repo->MaybeRecallObject($id)
 			);
 		}
 	}
@@ -137,11 +131,11 @@ class DaftTypedObjectRepositoryTest extends Base
 	/**
 	 * @template K as key-of<S>
 	 *
-	 * @dataProvider dataProviderAppendTypedObject
+	 * @dataProvider dataProviderAppendObject
 	 *
 	 * @depends test_append_typed_object
 	 *
-	 * @param class-string<AppendableTypedObjectRepository> $repo_type
+	 * @param class-string<AppendableObjectRepository&ConvertingRepository> $repo_type
 	 * @param array{type:class-string<T1>} $repo_args
 	 * @param list<S> $_append_these
 	 * @param list<S2> $expect_these
@@ -156,56 +150,28 @@ class DaftTypedObjectRepositoryTest extends Base
 			$repo_args
 		);
 
-		$object_type = $repo_args['type'];
-
 		$data = current($expect_these);
 
-		/**
-		 * @var array<int, K>
-		 */
-		$data_keys = array_keys($data);
-
-		/**
-		 * @var T
-		 */
-		$object_args = array_combine($data_keys, array_map(
-			/**
-			 * @param K $property
-			 * @param S[K] $value
-			 *
-			 * @return T[K]
-			 */
-			static function ($property, $value) use ($object_type) {
-				/**
-				 * @var T[K]
-				 */
-				return $object_type::PropertyScalarOrNullToValue(
-					$property,
-					$value
-				);
-			},
-			$data_keys,
-			$data
-		));
-
-		$object = new $object_type($object_args);
+		$object = $repo->ConvertSimpleArrayToObject($data);
 
 		$this->expectException(RuntimeException::class);
 		$this->expectExceptionMessage(
 			'Object could not be found for the specified id!'
 		);
 
-		$repo->RecallTypedObject($object->ObtainId());
+		$id = $repo->ObtainIdFromObject($object);
+
+		$repo->RecallObject($id);
 	}
 
 	/**
 	 * @template K as key-of<S>
 	 *
-	 * @dataProvider dataProviderAppendTypedObject
+	 * @dataProvider dataProviderAppendObject
 	 *
 	 * @depends test_append_typed_object
 	 *
-	 * @param class-string<AppendableTypedObjectRepository> $repo_type
+	 * @param class-string<AppendableObjectRepository&ConvertingRepository> $repo_type
 	 * @param array{type:class-string<T1>} $repo_args
 	 * @param list<S> $_append_these
 	 * @param list<S2> $expect_these
@@ -220,52 +186,22 @@ class DaftTypedObjectRepositoryTest extends Base
 			$repo_args
 		);
 
-		$object_type = $repo_args['type'];
-
 		$data = current($expect_these);
 
-		/**
-		 * @var array<int, K>
-		 */
-		$data_keys = array_keys($data);
-
-		/**
-		 * @var T
-		 */
-		$object_args = array_combine($data_keys, array_map(
-			/**
-			 * @param K $property
-			 * @param S[K] $value
-			 *
-			 * @return scalar|array|object|null
-			 */
-			static function ($property, $value) use ($object_type) {
-				/**
-				 * @var scalar|array|object|null
-				 */
-				return $object_type::PropertyScalarOrNullToValue(
-					$property,
-					$value
-				);
-			},
-			$data_keys,
-			$data
-		));
-
-		$object = new $object_type($object_args);
-
+		$object = $repo->ConvertSimpleArrayToObject($data);
+		$id = $repo->ObtainIdFromObject($object);
 		$random = bin2hex(random_bytes(16));
 
 		$this->expectException(Exception::class);
 		$this->expectExceptionMessage($random);
 
-		$repo->RecallTypedObject($object->ObtainId(), new Exception($random));
+		$repo->RecallObject($id, new Exception($random));
 	}
 
 	/**
 	 * @return list<
 	 *	array{
-	 *		0:class-string<AppendableTypedObjectRepository&PatchableObjectRepository>,
+	 *		0:class-string<AppendableObjectRepository&PatchableObjectRepository&ConvertingRepository>,
 	 *		1:array{type:class-string<T1>},
 	 *		2:array<string, scalar|null>,
 	 *		3:array<string, scalar|null>,
@@ -278,7 +214,7 @@ class DaftTypedObjectRepositoryTest extends Base
 		/**
 		 * @var list<
 		 *	array{
-		 *		0:class-string<AppendableTypedObjectRepository&PatchableObjectRepository>,
+		 *		0:class-string<AppendableObjectRepository&PatchableObjectRepository&ConvertingRepository>,
 		 *		1:array{type:class-string<T1>},
 		 *		2:array<string, scalar|null>,
 		 *		3:array<string, scalar|null>,
@@ -288,9 +224,9 @@ class DaftTypedObjectRepositoryTest extends Base
 		 */
 		return [
 			[
-				Fixtures\DaftTypedObjectMemoryRepository::class,
+				Fixtures\MemoryRepository::class,
 				[
-					'type' => Fixtures\MutableForRepository::class,
+					'type' => Fixtures\Thing::class,
 				],
 				[
 					'id' => 0,
@@ -300,7 +236,7 @@ class DaftTypedObjectRepositoryTest extends Base
 					'name' => 'bar',
 				],
 				[
-					'id' => '1',
+					'id' => 1,
 					'name' => 'bar',
 				],
 			],
@@ -314,7 +250,7 @@ class DaftTypedObjectRepositoryTest extends Base
 	 *
 	 * @depends test_append_typed_object
 	 *
-	 * @param class-string<AppendableTypedObjectRepository&PatchableObjectRepository> $repo_type
+	 * @param class-string<AppendableObjectRepository&PatchableObjectRepository&ConvertingRepository> $repo_type
 	 * @param array{type:class-string<T1>} $repo_args
 	 * @param array<string, scalar|null> $append_this
 	 * @param array<string, scalar|null> $patch_this
@@ -331,17 +267,30 @@ class DaftTypedObjectRepositoryTest extends Base
 			$repo_args
 		);
 
-		$object_type = $repo_args['type'];
+		$object = $repo->ConvertSimpleArrayToObject($append_this);
 
-		$object = $object_type::__fromArray($append_this);
+		$fresh = $repo->AppendObject($object);
 
-		$fresh = $repo->AppendTypedObject($object);
+		$id = $repo->ObtainIdFromObject($fresh);
 
-		$repo->PatchTypedObjectData($fresh->ObtainId(), $patch_this);
+		$repo->PatchObjectData($id, $patch_this);
 
 		static::assertSame(
 			$expect_this,
-			$repo->RecallTypedObject($fresh->ObtainId())->__toArray()
+			$repo->ConvertObjectToSimpleArray($repo->RecallObject($id))
 		);
+	}
+
+	public function test_thing_fails() : void
+	{
+		$object = new Fixtures\Thing(1, 'nope');
+
+		static::assertSame(1, $object->id);
+		static::assertSame('nope', $object->name);
+
+		static::expectException(InvalidArgumentException::class);
+		static::expectExceptionMessage('Argument 1 must be a digit!');
+
+		new Fixtures\Thing('nope', 'nope');
 	}
 }

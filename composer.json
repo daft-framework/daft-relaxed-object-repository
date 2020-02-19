@@ -10,14 +10,13 @@
 	],
 	"autoload": {
 		"psr-4": {
-			"SignpostMarv\\DaftTypedObject\\": "./src/"
+			"SignpostMarv\\DaftRelaxedObjectRepository\\": "./src/"
 		}
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"SignpostMarv\\DaftTypedObject\\": [
-				"./Tests/",
-				"./vendor/signpostmarv/daft-typed-object/Tests/"
+			"SignpostMarv\\DaftRelaxedObjectRepository\\": [
+				"./Tests/"
 			]
 		}
 	},
@@ -53,10 +52,10 @@
 	"require": {
 		"php": "^7.4",
 		"ext-hash": "*",
-		"ext-json": "*",
-		"signpostmarv/daft-typed-object": "^0.5.2"
+		"ext-json": "*"
 	},
 	"require-dev": {
+		"ext-ctype": "*",
 		"ext-xdebug": "*",
 		"infection/infection": "^0.15.1",
 		"maglnet/composer-require-checker": "^2.0",

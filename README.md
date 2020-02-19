@@ -1,8 +1,8 @@
-Copyright 2019 SignpostMarv
+Copyright 2020 SignpostMarv
 
-# Daft-Typed-Object-Repository
-[![Coverage Status](https://coveralls.io/repos/github/daft-framework/Daft-Typed-Object-Repository/badge.svg?branch=master)](https://coveralls.io/github/daft-framework/Daft-Typed-Object-Repository?branch=master)
-[![Build Status](https://travis-ci.org/daft-framework/Daft-Typed-Object-Repository.svg?branch=master)](https://travis-ci.org/daft-framework/Daft-Typed-Object-Repository)
-[![Type Coverage](https://shepherd.dev/github/daft-framework/Daft-Typed-Object-Repository/coverage.svg)](https://shepherd.dev/github/daft-framework/Daft-Typed-Object-Repository)
+# daft-relaxed-object-repository
+[![Coverage Status](https://coveralls.io/repos/github/daft-framework/daft-relaxed-object-repository/badge.svg?branch=master)](https://coveralls.io/github/daft-framework/daft-relaxed-object-repository?branch=master)
+[![Build Status](https://travis-ci.org/daft-framework/daft-relaxed-object-repository.svg?branch=master)](https://travis-ci.org/daft-framework/daft-relaxed-object-repository)
+[![Type Coverage](https://shepherd.dev/github/daft-framework/daft-relaxed-object-repository/coverage.svg)](https://shepherd.dev/github/daft-framework/daft-relaxed-object-repository)
 
-Typed Object Repository: Simplified version of [signpostmarv/daft-object-repository](https://github.com/SignpostMarv/daft-object-repository) for [signpostmarv/daft-typed-object](https://github.com/daft-framework/Daft-Typed-Object)
+Relaxed Object Repository: Simplified version of [signpostmarv/daft-typed-object-repository](https://github.com/daft-framework/Daft-Typed-Object-Repository) for objects other than [signpostmarv/daft-typed-object](https://github.com/daft-framework/Daft-Typed-Object) implementations

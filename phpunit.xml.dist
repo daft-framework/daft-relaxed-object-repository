@@ -6,7 +6,7 @@
 	executionOrder="random"
 >
 	<testsuites>
-		<testsuite name="Daft Typed Object Repository">
+		<testsuite name="Daft Relaxed Object Repository">
 			<directory>./Tests/</directory>
 		</testsuite>
 	</testsuites>

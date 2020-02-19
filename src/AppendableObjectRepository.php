@@ -13,11 +13,23 @@ namespace SignpostMarv\DaftRelaxedObjectRepository;
  *
  * @template-extends ObjectRepository<T1, T2>
  */
-interface PatchableObjectRepository extends ObjectRepository
+interface AppendableObjectRepository extends ObjectRepository
 {
 	/**
-	 * @param T2 $id
-	 * @param T3 $data
+	 * @param T1 $object
+	 *
+	 * @return T1
 	 */
-	public function PatchObjectData(array $id, array $data) : void;
+	public function AppendObject(
+		object $object
+	) : object;
+
+	/**
+	 * @param T3 $data
+	 *
+	 * @return T1
+	 */
+	public function AppendObjectFromArray(
+		array $data
+	) : object;
 }

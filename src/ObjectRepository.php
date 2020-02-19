@@ -4,17 +4,17 @@
 */
 declare(strict_types=1);
 
-namespace SignpostMarv\DaftTypedObject;
+namespace SignpostMarv\DaftRelaxedObjectRepository;
 
 use Throwable;
 
 /**
- * @template T1 as DaftTypedObjectForRepository
+ * @template T1 as object
  * @template T2 as array<string, scalar>
  *
  * @property-read class-string<T1> $type
  */
-interface DaftTypedObjectRepository
+interface ObjectRepository
 {
 	/**
 	 * @param array{type:class-string<T1>} $options
@@ -24,36 +24,43 @@ interface DaftTypedObjectRepository
 	/**
 	 * @param T1 $object
 	 */
-	public function UpdateTypedObject(
-		DaftTypedObjectForRepository $object
+	public function UpdateObject(
+		object $object
 	) : void;
 
 	/**
 	 * @param T2 $id
 	 */
-	public function ForgetTypedObject(
+	public function ForgetObject(
 		array $id
 	) : void;
 
 	/**
 	 * @param T2 $id
 	 */
-	public function RemoveTypedObject(
+	public function RemoveObject(
 		array $id
 	) : void;
 
 	/**
 	 * @param T2 $id
 	 */
-	public function RecallTypedObject(
+	public function RecallObject(
 		array $id,
 		Throwable $not_found = null
-	) : DaftTypedObjectForRepository;
+	) : object;
 
 	/**
 	 * @param T2 $id
 	 */
-	public function MaybeRecallTypedObject(
+	public function MaybeRecallObject(
 		array $id
-	) : ? DaftTypedObjectForRepository;
+	) : ? object;
+
+	/**
+	 * @param T1 $object
+	 *
+	 * @return T2
+	 */
+	public function ObtainIdFromObject(object $object) : array;
 }
