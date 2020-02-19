@@ -38,11 +38,6 @@
 			"php-cs-fixer fix --verbose --diff-format=udiff --dry-run"
 		]
 	},
-	"extra": {
-		"branch-alias": {
-			"dev-master": "0.5.x-dev"
-		}
-	},
 	"conflict": {
 		"vimeo/psalm": "<3.8.5"
 	},
