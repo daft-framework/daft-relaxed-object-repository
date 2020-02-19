@@ -1,5 +1,5 @@
 {
-	"name": "signpostmarv/daft-relaxed-object-repository",
+	"name": "daft-framework/daft-relaxed-object-repository",
 	"description": "Relaxed Object Repository: Simplified version of signpostmarv/daft-typed-object-repository for objects other than signpostmarv/daft-typed-object implementations",
 	"license": "Apache-2.0",
 	"authors": [
