@@ -10,12 +10,12 @@
 	],
 	"autoload": {
 		"psr-4": {
-			"SignpostMarv\\DaftRelaxedObjectRepository\\": "./src/"
+			"DaftFramework\\RelaxedObjectRepository\\": "./src/"
 		}
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"SignpostMarv\\DaftRelaxedObjectRepository\\": [
+			"DaftFramework\\RelaxedObjectRepository\\": [
 				"./Tests/"
 			]
 		}

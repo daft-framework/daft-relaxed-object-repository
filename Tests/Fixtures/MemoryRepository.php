@@ -4,13 +4,13 @@
 */
 declare(strict_types=1);
 
-namespace SignpostMarv\DaftRelaxedObjectRepository\Fixtures;
+namespace DaftFramework\RelaxedObjectRepository\Fixtures;
 
+use DaftFramework\RelaxedObjectRepository\AbstractObjectRepository;
+use DaftFramework\RelaxedObjectRepository\AppendableObjectRepository;
+use DaftFramework\RelaxedObjectRepository\ConvertingRepository;
+use DaftFramework\RelaxedObjectRepository\PatchableObjectRepository;
 use RuntimeException;
-use SignpostMarv\DaftRelaxedObjectRepository\AbstractObjectRepository;
-use SignpostMarv\DaftRelaxedObjectRepository\AppendableObjectRepository;
-use SignpostMarv\DaftRelaxedObjectRepository\ConvertingRepository;
-use SignpostMarv\DaftRelaxedObjectRepository\PatchableObjectRepository;
 use Throwable;
 
 /**

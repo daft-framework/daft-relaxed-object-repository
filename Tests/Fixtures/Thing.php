@@ -4,7 +4,7 @@
 */
 declare(strict_types=1);
 
-namespace SignpostMarv\DaftRelaxedObjectRepository\Fixtures;
+namespace DaftFramework\RelaxedObjectRepository\Fixtures;
 
 use InvalidArgumentException;
 

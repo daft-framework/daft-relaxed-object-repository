@@ -4,7 +4,7 @@
 */
 declare(strict_types=1);
 
-namespace SignpostMarv\DaftRelaxedObjectRepository;
+namespace DaftFramework\RelaxedObjectRepository;
 
 /**
  * @template T1 as object
