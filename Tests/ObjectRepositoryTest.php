@@ -7,7 +7,6 @@ declare(strict_types=1);
 namespace DaftFramework\RelaxedObjectRepository;
 
 use Exception;
-use InvalidArgumentException;
 use PHPUnit\Framework\TestCase as Base;
 use function random_bytes;
 use RuntimeException;
@@ -15,71 +14,42 @@ use RuntimeException;
 /**
  * @template S as array<string, scalar|null>
  * @template S2 as array<string, scalar|null>
- * @template T as array<string, scalar|array|object|null>
  * @template T1 as object
+ * @template T2 as array{type:class-string}
+ * @template T3 as AppendableObjectRepository&ConvertingRepository
+ * @template T4 as AppendableObjectRepository&PatchableObjectRepository&ConvertingRepository
  */
-class ObjectRepositoryTest extends Base
+abstract class ObjectRepositoryTest extends Base
 {
 	/**
 	 * @return list<
 	 *	array{
-	 *		0:class-string<AppendableObjectRepository&ConvertingRepository>,
-	 *		1:array{type:class-string<T1>},
-	 *		2:list<array<string, scalar|null>>,
-	 *		3:list<array<string, scalar|null>>
+	 *		0:class-string<T3>,
+	 *		1:T2,
+	 *		2:list<S>,
+	 *		3:list<S2>
 	 *	}
 	 * >
 	 */
-	public function dataProviderAppendObject() : array
-	{
-		/**
-		 * @var list<
-		 *	array{
-		 *		0:class-string<AppendableObjectRepository&ConvertingRepository>,
-		 *		1:array{type:class-string<T1>},
-		 *		2:list<array<string, scalar|null>>,
-		 *		3:list<array<string, scalar|null>>
-		 *	}
-		 * >
-		 */
-		return [
-			[
-				Fixtures\ThingMemoryRepository::class,
-				[
-					'type' => Fixtures\Thing::class,
-				],
-				[
-					[
-						'id' => 0,
-						'name' => 'foo',
-					],
-				],
-				[
-					[
-						'id' => '1',
-						'name' => 'foo',
-					],
-				],
-			],
-		];
-	}
+	abstract public function dataProviderAppendObject() : array;
 
 	/**
 	 * @template K as key-of<S>
 	 *
 	 * @dataProvider dataProviderAppendObject
 	 *
-	 * @param class-string<AppendableObjectRepository&ConvertingRepository> $repo_type
-	 * @param array{type:class-string<T1>} $repo_args
+	 * @param class-string<T3> $repo_type
+	 * @param T2 $repo_args
 	 * @param list<S> $append_these
 	 * @param list<S2> $expect_these
 	 */
-	public function test_append_typed_object(
+	public function test_append_object(
 		string $repo_type,
 		array $repo_args,
 		array $append_these,
 		array $expect_these
 	) : void {
+		/** @var AppendableObjectRepository&ConvertingRepository */
 		$repo = new $repo_type(
 			$repo_args
 		);
@@ -133,10 +103,10 @@ class ObjectRepositoryTest extends Base
 	 *
 	 * @dataProvider dataProviderAppendObject
 	 *
-	 * @depends test_append_typed_object
+	 * @depends test_append_object
 	 *
-	 * @param class-string<AppendableObjectRepository&ConvertingRepository> $repo_type
-	 * @param array{type:class-string<T1>} $repo_args
+	 * @param class-string<T3> $repo_type
+	 * @param T2 $repo_args
 	 * @param list<S> $_append_these
 	 * @param list<S2> $expect_these
 	 */
@@ -146,6 +116,7 @@ class ObjectRepositoryTest extends Base
 		array $_append_these,
 		array $expect_these
 	) : void {
+		/** @var AppendableObjectRepository&ConvertingRepository */
 		$repo = new $repo_type(
 			$repo_args
 		);
@@ -169,10 +140,10 @@ class ObjectRepositoryTest extends Base
 	 *
 	 * @dataProvider dataProviderAppendObject
 	 *
-	 * @depends test_append_typed_object
+	 * @depends test_append_object
 	 *
-	 * @param class-string<AppendableObjectRepository&ConvertingRepository> $repo_type
-	 * @param array{type:class-string<T1>} $repo_args
+	 * @param class-string<T3> $repo_type
+	 * @param T2 $repo_args
 	 * @param list<S> $_append_these
 	 * @param list<S2> $expect_these
 	 */
@@ -182,6 +153,7 @@ class ObjectRepositoryTest extends Base
 		array $_append_these,
 		array $expect_these
 	) : void {
+		/** @var AppendableObjectRepository&ConvertingRepository */
 		$repo = new $repo_type(
 			$repo_args
 		);
@@ -201,57 +173,25 @@ class ObjectRepositoryTest extends Base
 	/**
 	 * @return list<
 	 *	array{
-	 *		0:class-string<AppendableObjectRepository&PatchableObjectRepository&ConvertingRepository>,
-	 *		1:array{type:class-string<T1>},
+	 *		0:class-string<T4>,
+	 *		1:T2,
 	 *		2:array<string, scalar|null>,
 	 *		3:array<string, scalar|null>,
 	 *		4:array<string, scalar|null>
 	 *	}
 	 * >
 	 */
-	public function dataProviderPatchObject() : array
-	{
-		/**
-		 * @var list<
-		 *	array{
-		 *		0:class-string<AppendableObjectRepository&PatchableObjectRepository&ConvertingRepository>,
-		 *		1:array{type:class-string<T1>},
-		 *		2:array<string, scalar|null>,
-		 *		3:array<string, scalar|null>,
-		 *		4:array<string, scalar|null>
-		 *	}
-		 * >
-		 */
-		return [
-			[
-				Fixtures\ThingMemoryRepository::class,
-				[
-					'type' => Fixtures\Thing::class,
-				],
-				[
-					'id' => 0,
-					'name' => 'foo',
-				],
-				[
-					'name' => 'bar',
-				],
-				[
-					'id' => 1,
-					'name' => 'bar',
-				],
-			],
-		];
-	}
+	abstract public function dataProviderPatchObject() : array;
 
 	/**
 	 * @template K as key-of<S>
 	 *
 	 * @dataProvider dataProviderPatchObject
 	 *
-	 * @depends test_append_typed_object
+	 * @depends test_append_object
 	 *
-	 * @param class-string<AppendableObjectRepository&PatchableObjectRepository&ConvertingRepository> $repo_type
-	 * @param array{type:class-string<T1>} $repo_args
+	 * @param class-string<T4> $repo_type
+	 * @param T2 $repo_args
 	 * @param array<string, scalar|null> $append_this
 	 * @param array<string, scalar|null> $patch_this
 	 * @param array<string, scalar|null> $expect_this
@@ -263,6 +203,7 @@ class ObjectRepositoryTest extends Base
 		array $patch_this,
 		array $expect_this
 	) : void {
+		/** @var AppendableObjectRepository&PatchableObjectRepository&ConvertingRepository */
 		$repo = new $repo_type(
 			$repo_args
 		);
@@ -279,18 +220,5 @@ class ObjectRepositoryTest extends Base
 			$expect_this,
 			$repo->ConvertObjectToSimpleArray($repo->RecallObject($id))
 		);
-	}
-
-	public function test_thing_fails() : void
-	{
-		$object = new Fixtures\Thing(1, 'nope');
-
-		static::assertSame(1, $object->id);
-		static::assertSame('nope', $object->name);
-
-		static::expectException(InvalidArgumentException::class);
-		static::expectExceptionMessage('Argument 1 must be a digit!');
-
-		new Fixtures\Thing('nope', 'nope');
 	}
 }
