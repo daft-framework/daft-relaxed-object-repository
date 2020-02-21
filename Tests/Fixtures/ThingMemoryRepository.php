@@ -42,6 +42,9 @@ class ThingMemoryRepository extends MemoryRepository
 		return $this->AppendObjectFromArray($data);
 	}
 
+	/**
+	 * @param S2 $array
+	 */
 	public function ConvertSimpleArrayToObject(array $array) : object
 	{
 		/** @var T1 */

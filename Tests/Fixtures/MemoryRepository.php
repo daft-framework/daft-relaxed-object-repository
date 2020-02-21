@@ -15,9 +15,9 @@ use Throwable;
 
 /**
  * @template T1 as object
- * @template T2 as array{id:int}
- * @template S1 as array{name:string}
- * @template S2 as array{id:int, name:string}
+ * @template T2 as array<string, scalar>
+ * @template S1 as array<string, scalar>
+ * @template S2 as array<string, scalar|null>
  *
  * @template-extends AbstractObjectRepository<T1, T2>
  *
