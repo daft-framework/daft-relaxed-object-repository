@@ -11,8 +11,6 @@ use Throwable;
 /**
  * @template T1 as object
  * @template T2 as array<string, scalar>
- *
- * @property-read class-string<T1> $type
  */
 interface ObjectRepository
 {
