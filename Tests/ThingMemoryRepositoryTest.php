@@ -12,7 +12,7 @@ use InvalidArgumentException;
  * @template S as array{id:int, name:string}
  * @template S2 as array{id:int|string, name:string}
  * @template T1 as Fixtures\Thing
- * @template T2 as array{type:class-string<Fixtures\Thing>}
+ * @template T2 as array<string, scalar|array|object|null>
  * @template T3 as Fixtures\ThingMemoryRepository
  * @template T4 as Fixtures\ThingMemoryRepository
  *
@@ -46,7 +46,6 @@ final class ThingMemoryRepositoryTest extends ObjectRepositoryTest
 			[
 				Fixtures\ThingMemoryRepository::class,
 				[
-					'type' => Fixtures\Thing::class,
 				],
 				[
 					[
@@ -92,7 +91,6 @@ final class ThingMemoryRepositoryTest extends ObjectRepositoryTest
 			[
 				Fixtures\ThingMemoryRepository::class,
 				[
-					'type' => Fixtures\Thing::class,
 				],
 				[
 					'id' => 0,

@@ -18,12 +18,13 @@ use Throwable;
  * @template T2 as array<string, scalar>
  * @template S1 as array<string, scalar>
  * @template S2 as array<string, scalar|null>
+ * @template T3 as array<string, scalar|array|object|null>
  *
- * @template-extends AbstractObjectRepository<T1, T2>
+ * @template-extends AbstractObjectRepository<T1, T2, T3>
  *
- * @template-implements AppendableObjectRepository<T1, T2, S1>
- * @template-implements ConvertingRepository<T1, S2, T2>
- * @template-implements PatchableObjectRepository<T1, T2, S1>
+ * @template-implements AppendableObjectRepository<T1, T2, S1, T3>
+ * @template-implements ConvertingRepository<T1, S2, T2, T3>
+ * @template-implements PatchableObjectRepository<T1, T2, S1, T3>
  */
 abstract class MemoryRepository extends AbstractObjectRepository implements
 		AppendableObjectRepository,

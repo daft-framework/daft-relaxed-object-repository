@@ -11,13 +11,14 @@ use Throwable;
 /**
  * @template T1 as object
  * @template T2 as array<string, scalar>
+ * @template T3 as array<string, scalar|array|object|null>
  */
 interface ObjectRepository
 {
 	/**
-	 * @param array{type:class-string<T1>} $options
+	 * @param T3 $_options
 	 */
-	public function __construct(array $options);
+	public function __construct(array $_options);
 
 	/**
 	 * @param T1 $object

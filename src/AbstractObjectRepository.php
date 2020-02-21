@@ -12,29 +12,19 @@ use Throwable;
 /**
  * @template T1 as object
  * @template T2 as array<string, scalar>
+ * @template T3 as array<string, scalar|array|object|null>
  *
- * @template-implements ObjectRepository<T1, T2>
+ * @template-implements ObjectRepository<T1, T2, T3>
  */
 abstract class AbstractObjectRepository implements ObjectRepository
 {
-	/**
-	 * @readonly
-	 *
-	 * @var class-string<T1>
-	 */
-	public string $type;
-
 	/**
 	 * @var array<string, T1>
 	 */
 	protected array $memory = [];
 
-	/**
-	 * @param array{type:class-string<T1>} $options
-	 */
-	public function __construct(array $options)
+	public function __construct(array $_options)
 	{
-		$this->type = $options['type'];
 	}
 
 	/**

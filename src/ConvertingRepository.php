@@ -10,8 +10,9 @@ namespace DaftFramework\RelaxedObjectRepository;
  * @template T1 as object
  * @template T2 as array<string, scalar|null>
  * @template T3 as array<string, scalar>
+ * @template T4 as array<string, scalar|array|object|null>
  *
- * @template-extends ObjectRepository<T1, T3>
+ * @template-extends ObjectRepository<T1, T3, T4>
  */
 interface ConvertingRepository extends ObjectRepository
 {

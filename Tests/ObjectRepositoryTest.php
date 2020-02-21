@@ -15,7 +15,7 @@ use RuntimeException;
  * @template S as array<string, scalar|null>
  * @template S2 as array<string, scalar|null>
  * @template T1 as object
- * @template T2 as array{type:class-string}
+ * @template T2 as array<string, scalar|array|object|null>
  * @template T3 as AppendableObjectRepository&ConvertingRepository
  * @template T4 as AppendableObjectRepository&PatchableObjectRepository&ConvertingRepository
  */
