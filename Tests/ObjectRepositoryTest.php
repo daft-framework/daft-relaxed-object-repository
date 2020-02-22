@@ -40,11 +40,11 @@ abstract class ObjectRepositoryTest extends Base
 	 * @covers \DaftFramework\RelaxedObjectRepository\AppendableObjectRepository::AppendObject()
 	 * @covers \DaftFramework\RelaxedObjectRepository\ConvertingRepository::ConvertSimpleArrayToObject()
 	 * @covers \DaftFramework\RelaxedObjectRepository\ObjectRepository::__construct()
+	 * @covers \DaftFramework\RelaxedObjectRepository\ObjectRepository::ForgetObject()
+	 * @covers \DaftFramework\RelaxedObjectRepository\ObjectRepository::MaybeRecallObject()
 	 * @covers \DaftFramework\RelaxedObjectRepository\ObjectRepository::ObtainIdFromObject()
 	 * @covers \DaftFramework\RelaxedObjectRepository\ObjectRepository::RecallObject()
 	 * @covers \DaftFramework\RelaxedObjectRepository\ObjectRepository::RemoveObject()
-	 * @covers \DaftFramework\RelaxedObjectRepository\ObjectRepository::ForgetObject()
-	 * @covers \DaftFramework\RelaxedObjectRepository\ObjectRepository::MaybeRecallObject()
 	 *
 	 * @param class-string<T3> $repo_type
 	 * @param T2 $repo_args

@@ -218,21 +218,21 @@ final class ThingMemoryRepositoryTest extends ObjectRepositoryTest
 	/**
 	 * @dataProvider dataProviderPatchObject
 	 *
+	 * @covers \DaftFramework\RelaxedObjectRepository\AbstractObjectRepository::__construct()
 	 * @covers \DaftFramework\RelaxedObjectRepository\AbstractObjectRepository::MaybeRecallObject()
 	 * @covers \DaftFramework\RelaxedObjectRepository\AbstractObjectRepository::RecallObject()
 	 * @covers \DaftFramework\RelaxedObjectRepository\AbstractObjectRepository::RelaxedObjectHash()
 	 * @covers \DaftFramework\RelaxedObjectRepository\AbstractObjectRepository::UpdateObject()
-	 * @covers \DaftFramework\RelaxedObjectRepository\AbstractObjectRepository::__construct()
 	 * @covers \DaftFramework\RelaxedObjectRepository\Fixtures\MemoryRepository::AppendObjectFromArray()
 	 * @covers \DaftFramework\RelaxedObjectRepository\Fixtures\MemoryRepository::MaybeRecallObject()
 	 * @covers \DaftFramework\RelaxedObjectRepository\Fixtures\MemoryRepository::ObtainIdFromObject()
 	 * @covers \DaftFramework\RelaxedObjectRepository\Fixtures\MemoryRepository::PatchObjectData()
 	 * @covers \DaftFramework\RelaxedObjectRepository\Fixtures\MemoryRepository::UpdateObject()
 	 * @covers \DaftFramework\RelaxedObjectRepository\Fixtures\Thing::__construct()
+	 * @covers \DaftFramework\RelaxedObjectRepository\Fixtures\ThingMemoryRepository::__construct()
 	 * @covers \DaftFramework\RelaxedObjectRepository\Fixtures\ThingMemoryRepository::AppendObject()
 	 * @covers \DaftFramework\RelaxedObjectRepository\Fixtures\ThingMemoryRepository::ConvertObjectToSimpleArray()
 	 * @covers \DaftFramework\RelaxedObjectRepository\Fixtures\ThingMemoryRepository::ConvertSimpleArrayToObject()
-	 * @covers \DaftFramework\RelaxedObjectRepository\Fixtures\ThingMemoryRepository::__construct()
 	 *
 	 * @depends test_append_object
 	 *
