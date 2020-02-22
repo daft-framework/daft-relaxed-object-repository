@@ -1,6 +1,7 @@
 /vendor/
 /phpunit/
 /phpunit.cache
+/.phpunit.result.cache
 /phpunit.clover
 /.php_cs.cache
 /infection.log
