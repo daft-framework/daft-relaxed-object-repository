@@ -15,7 +15,7 @@ matrix:
   fast_finish: true
 cache:
   files:
-    - ./phpunit.cache
+    - ./.phpunit.result.cache
     - ./.php_cs.cache
   directories:
     - $HOME/.composer/cache
