@@ -14,6 +14,7 @@ use RuntimeException;
 /**
  * @template S as array<string, scalar|null>
  * @template S2 as array<string, scalar|null>
+ * @template S3 as array<string, scalar|null>
  * @template T1 as object
  * @template T2 as array<string, scalar|array|object|null>
  * @template T3 as AppendableObjectRepository&ConvertingRepository
@@ -175,9 +176,9 @@ abstract class ObjectRepositoryTest extends Base
 	 *	array{
 	 *		0:class-string<T4>,
 	 *		1:T2,
-	 *		2:array<string, scalar|null>,
-	 *		3:array<string, scalar|null>,
-	 *		4:array<string, scalar|null>
+	 *		2:S,
+	 *		3:S3,
+	 *		4:S2
 	 *	}
 	 * >
 	 */
@@ -192,9 +193,9 @@ abstract class ObjectRepositoryTest extends Base
 	 *
 	 * @param class-string<T4> $repo_type
 	 * @param T2 $repo_args
-	 * @param array<string, scalar|null> $append_this
-	 * @param array<string, scalar|null> $patch_this
-	 * @param array<string, scalar|null> $expect_this
+	 * @param S $append_this
+	 * @param S3 $patch_this
+	 * @param S2 $expect_this
 	 */
 	public function test_patch_object(
 		string $repo_type,
@@ -203,11 +204,12 @@ abstract class ObjectRepositoryTest extends Base
 		array $patch_this,
 		array $expect_this
 	) : void {
-		/** @var AppendableObjectRepository&PatchableObjectRepository&ConvertingRepository */
+		/** @var T4&ConvertingRepository&PatchableObjectRepository */
 		$repo = new $repo_type(
 			$repo_args
 		);
 
+		/** @var T1 */
 		$object = $repo->ConvertSimpleArrayToObject($append_this);
 
 		$fresh = $repo->AppendObject($object);
@@ -216,9 +218,12 @@ abstract class ObjectRepositoryTest extends Base
 
 		$repo->PatchObjectData($id, $patch_this);
 
+		/** @var T1 */
+		$fresh2 = $repo->RecallObject($id);
+
 		static::assertSame(
 			$expect_this,
-			$repo->ConvertObjectToSimpleArray($repo->RecallObject($id))
+			$repo->ConvertObjectToSimpleArray($fresh2)
 		);
 	}
 }

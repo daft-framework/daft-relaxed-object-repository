@@ -11,12 +11,13 @@ use InvalidArgumentException;
 /**
  * @template S as array{id:int, name:string}
  * @template S2 as array{id:int|string, name:string}
+ * @template S3 as array{name:string}
  * @template T1 as Fixtures\Thing
  * @template T2 as array<string, scalar|array|object|null>
  * @template T3 as Fixtures\ThingMemoryRepository
  * @template T4 as Fixtures\ThingMemoryRepository
  *
- * @template-extends ObjectRepositoryTest<S, S2, T1, T2, T3, T4>
+ * @template-extends ObjectRepositoryTest<S, S2, S3, T1, T2, T3, T4>
  */
 final class ThingMemoryRepositoryTest extends ObjectRepositoryTest
 {
@@ -68,9 +69,9 @@ final class ThingMemoryRepositoryTest extends ObjectRepositoryTest
 	 *	array{
 	 *		0:class-string<T4>,
 	 *		1:T2,
-	 *		2:array<string, scalar|null>,
-	 *		3:array<string, scalar|null>,
-	 *		4:array<string, scalar|null>
+	 *		2:S,
+	 *		3:S3,
+	 *		4:S2
 	 *	}
 	 * >
 	 */
@@ -81,9 +82,9 @@ final class ThingMemoryRepositoryTest extends ObjectRepositoryTest
 		 *	array{
 		 *		0:class-string<T4>,
 		 *		1:T2,
-		 *		2:array<string, scalar|null>,
-		 *		3:array<string, scalar|null>,
-		 *		4:array<string, scalar|null>
+		 *		2:S,
+		 *		3:S3,
+		 *		4:S2
 		 *	}
 		 * >
 		 */
