@@ -185,8 +185,6 @@ abstract class ObjectRepositoryTest extends Base
 	abstract public function dataProviderPatchObject() : array;
 
 	/**
-	 * @template K as key-of<S>
-	 *
 	 * @dataProvider dataProviderPatchObject
 	 *
 	 * @depends test_append_object
