@@ -31,6 +31,10 @@ abstract class MemoryRepository extends AbstractObjectRepository implements
 		ConvertingRepository,
 		PatchableObjectRepository
 {
+	const MIN_ID = 0;
+
+	const ID_INCREMENT = 1;
+
 	/**
 	 * @var array<string, S2>
 	 */
@@ -44,7 +48,7 @@ abstract class MemoryRepository extends AbstractObjectRepository implements
 	public function AppendObjectFromArray(
 		array $data
 	) : object {
-		$new_id = max(0, count($this->data)) + 1;
+		$new_id = max(self::MIN_ID, count($this->data)) + self::ID_INCREMENT;
 
 		/**
 		 * @var S2

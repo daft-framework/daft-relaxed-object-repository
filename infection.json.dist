@@ -10,6 +10,11 @@
     },
     "mutators": {
         "@default": true,
+        "MethodCallRemoval": {
+            "ignore": [
+                "DaftFramework\\RelaxedObjectRepository\\Fixtures\\ThingMemoryRepository::__construct"
+            ]
+        },
         "Throw_": {
             "ignore": [
                 "DaftFramework\\RelaxedObjectRepository\\AbstractObjectRepository::RecallObject"
