@@ -57,7 +57,7 @@ interface ObjectRepository
 	) : ? object;
 
 	/**
-	 * Possible returns many objects, or none
+	 * Possible returns many objects, or none.
 	 *
 	 * Return order is not guaranteed to correspond to argument order
 	 *
