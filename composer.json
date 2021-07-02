@@ -39,7 +39,7 @@
 		]
 	},
 	"conflict": {
-		"vimeo/psalm": "<3.11.2"
+		"vimeo/psalm": "<4.8.1"
 	},
 	"suggest": {
 		"vimeo/psalm": "for static analysis & templated typehinting"

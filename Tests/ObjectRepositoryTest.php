@@ -118,13 +118,13 @@ abstract class ObjectRepositoryTest extends Base
 	 *
 	 * @param class-string<T3> $repo_type
 	 * @param T2 $repo_args
-	 * @param list<S> $_append_these
+	 * @param list<S> $append_these
 	 * @param list<S2> $expect_these
 	 */
 	public function test_default_failure(
 		string $repo_type,
 		array $repo_args,
-		array $_append_these,
+		array $append_these,
 		array $expect_these
 	) : void {
 		/** @var AppendableObjectRepository&ConvertingRepository */
@@ -158,13 +158,13 @@ abstract class ObjectRepositoryTest extends Base
 	 *
 	 * @param class-string<T3> $repo_type
 	 * @param T2 $repo_args
-	 * @param list<S> $_append_these
+	 * @param list<S> $append_these
 	 * @param list<S2> $expect_these
 	 */
 	public function test_custom_failure(
 		string $repo_type,
 		array $repo_args,
-		array $_append_these,
+		array $append_these,
 		array $expect_these
 	) : void {
 		/** @var AppendableObjectRepository&ConvertingRepository */

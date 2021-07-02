@@ -53,6 +53,8 @@ class ThingMemoryRepository extends MemoryRepository
 
 	/**
 	 * @param S2 $array
+	 *
+	 * @return T1
 	 */
 	public function ConvertSimpleArrayToObject(array $array) : object
 	{
