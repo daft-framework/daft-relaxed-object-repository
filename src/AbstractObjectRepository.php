@@ -67,6 +67,22 @@ abstract class AbstractObjectRepository implements ObjectRepository
 
 	/**
 	 * @param ID $id
+	 * @param ID ...$ids
+	 *
+	 * @return list<TYPE>
+	 */
+	public function MaybeRecallManyObjects(array $id, array ...$ids) : array
+	{
+		array_unshift($ids, $id);
+
+		return array_values(array_filter(array_map(
+			[$this, 'MaybeRecallObject'],
+			$ids
+		)));
+	}
+
+	/**
+	 * @param ID $id
 	 *
 	 * @return TYPE
 	 */

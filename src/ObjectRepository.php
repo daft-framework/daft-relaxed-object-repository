@@ -57,6 +57,18 @@ interface ObjectRepository
 	) : ? object;
 
 	/**
+	 * Possible returns many objects, or none
+	 *
+	 * Return order is not guaranteed to correspond to argument order
+	 *
+	 * @param ID $id
+	 * @param ID ...$ids
+	 *
+	 * @return list<TYPE>
+	 */
+	public function MaybeRecallManyObjects(array $id, array ...$ids) : array;
+
+	/**
 	 * @param TYPE $object
 	 *
 	 * @return ID

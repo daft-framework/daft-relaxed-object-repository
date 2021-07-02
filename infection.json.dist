@@ -19,6 +19,11 @@
             "ignore": [
                 "DaftFramework\\RelaxedObjectRepository\\AbstractObjectRepository::RecallObject"
             ]
+        },
+        "UnwrapArrayValues": {
+            "ignore": [
+                "DaftFramework\\RelaxedObjectRepository\\AbstractObjectRepository::MaybeRecallManyObjects"
+            ]
         }
     }
 }

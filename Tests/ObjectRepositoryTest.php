@@ -43,6 +43,8 @@ abstract class ObjectRepositoryTest extends Base
 	 * @covers \DaftFramework\RelaxedObjectRepository\ObjectRepository::__construct()
 	 * @covers \DaftFramework\RelaxedObjectRepository\ObjectRepository::ForgetObject()
 	 * @covers \DaftFramework\RelaxedObjectRepository\ObjectRepository::MaybeRecallObject()
+	 * @covers \DaftFramework\RelaxedObjectRepository\AbstractObjectRepository::MaybeRecallManyObjects()
+	 * @covers \DaftFramework\RelaxedObjectRepository\ObjectRepository::MaybeRecallManyObjects()
 	 * @covers \DaftFramework\RelaxedObjectRepository\ObjectRepository::ObtainIdFromObject()
 	 * @covers \DaftFramework\RelaxedObjectRepository\ObjectRepository::RecallObject()
 	 * @covers \DaftFramework\RelaxedObjectRepository\ObjectRepository::RemoveObject()
@@ -91,19 +93,30 @@ abstract class ObjectRepositoryTest extends Base
 
 			static::assertNotNull($fresh1);
 
+			/** @var T1|null */
+			$fresh1_many = $repo->MaybeRecallManyObjects($id)[0] ?? null;
+
 			$id = $repo->ObtainIdFromObject($object);
 
 			$fresh2 = $repo->RecallObject($id);
 
+			/** @var T1|null */
+			$fresh2_many = $repo->MaybeRecallManyObjects($id)[0] ?? null;
+
 			static::assertNotSame($object, $fresh1);
 			static::assertNotSame($object, $fresh2);
+			static::assertNotSame($object, $fresh1_many);
+			static::assertNotSame($object, $fresh2_many);
 			static::assertSame($fresh1, $fresh2);
+			static::assertSame($fresh1, $fresh1_many);
+			static::assertSame($fresh2, $fresh2_many);
 
 			$repo->RemoveObject($id);
 
 			static::assertNull(
 				$repo->MaybeRecallObject($id)
 			);
+			static::assertSame([], $repo->MaybeRecallManyObjects($id));
 		}
 	}
 

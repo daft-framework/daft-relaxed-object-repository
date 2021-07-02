@@ -127,6 +127,7 @@ final class ThingMemoryRepositoryTest extends ObjectRepositoryTest
 	 * @covers \DaftFramework\RelaxedObjectRepository\Fixtures\ThingMemoryRepository::AppendObject()
 	 * @covers \DaftFramework\RelaxedObjectRepository\Fixtures\ThingMemoryRepository::ConvertObjectToSimpleArray()
 	 * @covers \DaftFramework\RelaxedObjectRepository\Fixtures\ThingMemoryRepository::ConvertSimpleArrayToObject()
+	 * @covers \DaftFramework\RelaxedObjectRepository\AbstractObjectRepository::MaybeRecallManyObjects()
 	 *
 	 * @param class-string<T3> $repo_type
 	 * @param T2 $repo_args
