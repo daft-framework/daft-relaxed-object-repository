@@ -11,16 +11,16 @@ use RuntimeException;
 use Throwable;
 
 /**
- * @template T1 as object
- * @template T2 as array<string, scalar>
- * @template T3 as array<string, scalar|array|object|null>
+ * @template OBJECT as object
+ * @template ID as array<string, scalar>
+ * @template CTORARGS as array<string, scalar|array|object|null>
  *
- * @template-implements ObjectRepository<T1, T2, T3>
+ * @template-implements ObjectRepository<OBJECT, ID, CTORARGS>
  */
 abstract class AbstractObjectRepository implements ObjectRepository
 {
 	/**
-	 * @var array<string, T1>
+	 * @var array<string, OBJECT>
 	 */
 	protected array $memory = [];
 
@@ -29,7 +29,7 @@ abstract class AbstractObjectRepository implements ObjectRepository
 	}
 
 	/**
-	 * @param T1 $object
+	 * @param OBJECT $object
 	 */
 	public function UpdateObject(
 		object $object
@@ -40,7 +40,7 @@ abstract class AbstractObjectRepository implements ObjectRepository
 	}
 
 	/**
-	 * @param T2 $id
+	 * @param ID $id
 	 */
 	public function ForgetObject(array $id) : void
 	{
@@ -50,9 +50,9 @@ abstract class AbstractObjectRepository implements ObjectRepository
 	}
 
 	/**
-	 * @param T2 $id
+	 * @param ID $id
 	 *
-	 * @return T1|null
+	 * @return OBJECT|null
 	 */
 	public function MaybeRecallObject(
 		array $id
@@ -60,15 +60,15 @@ abstract class AbstractObjectRepository implements ObjectRepository
 		$hash = static::RelaxedObjectHash($id);
 
 		/**
-		 * @var T1|null
+		 * @var OBJECT|null
 		 */
 		return $this->memory[$hash] ?? null;
 	}
 
 	/**
-	 * @param T2 $id
+	 * @param ID $id
 	 *
-	 * @return T1
+	 * @return OBJECT
 	 */
 	public function RecallObject(
 		array $id,

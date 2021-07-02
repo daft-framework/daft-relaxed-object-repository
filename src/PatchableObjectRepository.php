@@ -7,18 +7,18 @@ declare(strict_types=1);
 namespace DaftFramework\RelaxedObjectRepository;
 
 /**
- * @template T1 as object
- * @template T2 as array<string, scalar>
- * @template T3 as array<string, scalar|null>
- * @template T4 as array<string, scalar|array|object|null>
+ * @template OBJECT as object
+ * @template ID as array<string, scalar>
+ * @template PARTIAL as array<string, scalar|array|object|null>
+ * @template CTORARGS as array<string, scalar|array|object|null>
  *
- * @template-extends ObjectRepository<T1, T2, T4>
+ * @template-extends ObjectRepository<OBJECT, ID, CTORARGS>
  */
 interface PatchableObjectRepository extends ObjectRepository
 {
 	/**
-	 * @param T2 $id
-	 * @param T3 $data
+	 * @param ID $id
+	 * @param PARTIAL $data
 	 */
 	public function PatchObjectData(array $id, array $data) : void;
 }

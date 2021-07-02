@@ -7,26 +7,26 @@ declare(strict_types=1);
 namespace DaftFramework\RelaxedObjectRepository;
 
 /**
- * @template T1 as object
- * @template T2 as array<string, scalar|null>
- * @template T3 as array<string, scalar>
- * @template T4 as array<string, scalar|array|object|null>
+ * @template OBJECT as object
+ * @template SIMPLE as array<string, scalar|array|object|null>
+ * @template ID as array<string, scalar>
+ * @template CTORARGS as array<string, scalar|array|object|null>
  *
- * @template-extends ObjectRepository<T1, T3, T4>
+ * @template-extends ObjectRepository<OBJECT, ID, CTORARGS>
  */
 interface ConvertingRepository extends ObjectRepository
 {
 	/**
-	 * @param T2 $array
+	 * @param SIMPLE $array
 	 *
-	 * @return T1
+	 * @return OBJECT
 	 */
 	public function ConvertSimpleArrayToObject(array $array) : object;
 
 	/**
-	 * @param T1 $object
+	 * @param OBJECT $object
 	 *
-	 * @return T2
+	 * @return SIMPLE
 	 */
 	public function ConvertObjectToSimpleArray(object $object) : array;
 }

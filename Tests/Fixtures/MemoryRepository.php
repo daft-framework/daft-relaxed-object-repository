@@ -14,17 +14,17 @@ use DaftFramework\RelaxedObjectRepository\PatchableObjectRepository;
 use function is_null;
 
 /**
- * @template T1 as object
- * @template T2 as array<string, scalar>
- * @template S1 as array<string, scalar>
- * @template S2 as array<string, scalar|null>
- * @template T3 as array<string, scalar|array|object|null>
+ * @template OBJECT as object
+ * @template ID as array<string, scalar>
+ * @template SIMPLE as array<string, scalar|array|object|null>
+ * @template PARTIAL as array<string, scalar|array|object|null>
+ * @template CTORARGS as array<string, scalar|array|object|null>
  *
- * @template-extends AbstractObjectRepository<T1, T2, T3>
+ * @template-extends AbstractObjectRepository<OBJECT, ID, CTORARGS>
  *
- * @template-implements AppendableObjectRepository<T1, T2, S1, T3>
- * @template-implements ConvertingRepository<T1, S2, T2, T3>
- * @template-implements PatchableObjectRepository<T1, T2, S1, T3>
+ * @template-implements AppendableObjectRepository<OBJECT, ID, PARTIAL, CTORARGS>
+ * @template-implements ConvertingRepository<OBJECT, SIMPLE, ID, CTORARGS>
+ * @template-implements PatchableObjectRepository<OBJECT, ID, PARTIAL, CTORARGS>
  */
 abstract class MemoryRepository extends AbstractObjectRepository implements
 		AppendableObjectRepository,
@@ -36,12 +36,12 @@ abstract class MemoryRepository extends AbstractObjectRepository implements
 	public const ID_INCREMENT = 1;
 
 	/**
-	 * @var array<string, S2>
+	 * @var array<string, SIMPLE>
 	 */
 	protected array $data = [];
 
 	/**
-	 * @var array<string, T1>
+	 * @var array<string, OBJECT>
 	 */
 	protected array $memory = [];
 
@@ -51,7 +51,7 @@ abstract class MemoryRepository extends AbstractObjectRepository implements
 		$new_id = max(self::MIN_ID, count($this->data)) + self::ID_INCREMENT;
 
 		/**
-		 * @var S2
+		 * @var SIMPLE
 		 */
 		$data = [
 			'id' => $new_id,
@@ -67,13 +67,13 @@ abstract class MemoryRepository extends AbstractObjectRepository implements
 		$this->memory[$hash] = $object;
 
 		/**
-		 * @var T1
+		 * @var OBJECT
 		 */
 		return $object;
 	}
 
 	/**
-	 * @param T1 $object
+	 * @param OBJECT $object
 	 */
 	public function UpdateObject(
 		object $object
@@ -88,7 +88,7 @@ abstract class MemoryRepository extends AbstractObjectRepository implements
 	}
 
 	/**
-	 * @param T2 $id
+	 * @param ID $id
 	 */
 	public function RemoveObject(array $id) : void
 	{
@@ -99,9 +99,9 @@ abstract class MemoryRepository extends AbstractObjectRepository implements
 	}
 
 	/**
-	 * @param T2 $id
+	 * @param ID $id
 	 *
-	 * @return T1|null
+	 * @return OBJECT|null
 	 */
 	public function MaybeRecallObject(
 		array $id
@@ -128,8 +128,8 @@ abstract class MemoryRepository extends AbstractObjectRepository implements
 	}
 
 	/**
-	 * @param T2 $id
-	 * @param S1 $data
+	 * @param ID $id
+	 * @param PARTIAL $data
 	 */
 	public function PatchObjectData(array $id, array $data) : void
 	{
@@ -143,7 +143,7 @@ abstract class MemoryRepository extends AbstractObjectRepository implements
 		 */
 		$data = $data;
 
-		/** @var S2 */
+		/** @var SIMPLE */
 		$from_array_args = $id + $data;
 
 		$object = $this->ConvertSimpleArrayToObject($from_array_args);
@@ -152,13 +152,13 @@ abstract class MemoryRepository extends AbstractObjectRepository implements
 	}
 
 	/**
-	 * @param T1 $object
+	 * @param OBJECT $object
 	 *
-	 * @return T2
+	 * @return ID
 	 */
 	public function ObtainIdFromObject(object $object) : array
 	{
-		/** @var T2 */
+		/** @var ID */
 		return [
 			'id' => $object->id,
 		];

@@ -7,28 +7,28 @@ declare(strict_types=1);
 namespace DaftFramework\RelaxedObjectRepository;
 
 /**
- * @template T1 as object
- * @template T2 as array<string, scalar>
- * @template T3 as array<string, scalar|null>
- * @template T4 as array<string, scalar|array|object|null>
+ * @template OBJECT as object
+ * @template ID as array<string, scalar>
+ * @template PARTIAL as array<string, scalar|array|object|null>
+ * @template CTORARGS as array<string, scalar|array|object|null>
  *
- * @template-extends ObjectRepository<T1, T2, T4>
+ * @template-extends ObjectRepository<OBJECT, ID, CTORARGS>
  */
 interface AppendableObjectRepository extends ObjectRepository
 {
 	/**
-	 * @param T1 $object
+	 * @param OBJECT $object
 	 *
-	 * @return T1
+	 * @return OBJECT
 	 */
 	public function AppendObject(
 		object $object
 	) : object;
 
 	/**
-	 * @param T3 $data
+	 * @param PARTIAL $data
 	 *
-	 * @return T1
+	 * @return OBJECT
 	 */
 	public function AppendObjectFromArray(
 		array $data
