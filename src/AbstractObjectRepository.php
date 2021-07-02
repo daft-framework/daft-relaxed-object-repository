@@ -34,7 +34,7 @@ abstract class AbstractObjectRepository implements ObjectRepository
 	public function UpdateObject(
 		object $object
 	) : void {
-		$hash = static::RelaxedObjectHash($this->ObtainIdFromObject($object));
+		$hash = $this->RelaxedObjectHash($this->ObtainIdFromObject($object));
 
 		$this->memory[$hash] = $object;
 	}
@@ -44,7 +44,7 @@ abstract class AbstractObjectRepository implements ObjectRepository
 	 */
 	public function ForgetObject(array $id) : void
 	{
-		$hash = static::RelaxedObjectHash($id);
+		$hash = $this->RelaxedObjectHash($id);
 
 		unset($this->memory[$hash]);
 	}
@@ -57,7 +57,7 @@ abstract class AbstractObjectRepository implements ObjectRepository
 	public function MaybeRecallObject(
 		array $id
 	) : ? object {
-		$hash = static::RelaxedObjectHash($id);
+		$hash = $this->RelaxedObjectHash($id);
 
 		/**
 		 * @var OBJECT|null
@@ -86,9 +86,9 @@ abstract class AbstractObjectRepository implements ObjectRepository
 	}
 
 	/**
-	 * @param array<string, scalar> $id
+	 * @param ID $id
 	 */
-	protected static function RelaxedObjectHash(
+	protected function RelaxedObjectHash(
 		array $id
 	) : string {
 		return hash('sha512', json_encode($id), true);

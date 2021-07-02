@@ -15,7 +15,7 @@ use function is_null;
 
 /**
  * @template OBJECT as object
- * @template ID as array<string, scalar>
+ * @template ID as array{id:positive-int}
  * @template SIMPLE as array<string, scalar|array|object|null>
  * @template PARTIAL as array<string, scalar|array|object|null>
  * @template CTORARGS as array<string, scalar|array|object|null>
@@ -50,15 +50,20 @@ abstract class MemoryRepository extends AbstractObjectRepository implements
 	) : object {
 		$new_id = max(self::MIN_ID, count($this->data)) + self::ID_INCREMENT;
 
+		/** @var ID */
+		$id = ['id' => $new_id];
+
 		/**
-		 * @var SIMPLE
+		 * @var PARTIAL
 		 */
 		$data = [
-			'id' => $new_id,
 			'name' => $data['name'],
 		];
 
-		$hash = static::RelaxedObjectHash(['id' => $new_id]);
+		$hash = $this->RelaxedObjectHash($id);
+
+		/** @var SIMPLE */
+		$data = $id + $data;
 
 		$this->data[$hash] = $data;
 
@@ -80,7 +85,7 @@ abstract class MemoryRepository extends AbstractObjectRepository implements
 	) : void {
 		$id = $this->ObtainIdFromObject($object);
 
-		$hash = static::RelaxedObjectHash($id);
+		$hash = $this->RelaxedObjectHash($id);
 
 		parent::UpdateObject($object);
 
@@ -92,7 +97,7 @@ abstract class MemoryRepository extends AbstractObjectRepository implements
 	 */
 	public function RemoveObject(array $id) : void
 	{
-		$hash = static::RelaxedObjectHash($id);
+		$hash = $this->RelaxedObjectHash($id);
 
 		$this->ForgetObject($id);
 		unset($this->data[$hash]);
@@ -109,7 +114,7 @@ abstract class MemoryRepository extends AbstractObjectRepository implements
 		$maybe = parent::MaybeRecallObject($id);
 
 		if (is_null($maybe)) {
-			$hash = static::RelaxedObjectHash($id);
+			$hash = $this->RelaxedObjectHash($id);
 
 			$row = $this->data[$hash] ?? null;
 
