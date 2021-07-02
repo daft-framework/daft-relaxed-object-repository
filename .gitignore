@@ -4,5 +4,6 @@
 /.phpunit.result.cache
 /phpunit.clover
 /.php_cs.cache
+/.php-cs-fixer.cache
 /infection.log
 /psalm/cache/
