@@ -53,13 +53,13 @@
 		"ext-ctype": "*",
 		"ext-xdebug": "*",
 		"infection/infection": "^0.23.0",
-		"maglnet/composer-require-checker": "^2.0",
-		"php-coveralls/php-coveralls": "^2.2",
-		"phpunit/phpunit": "^8.5",
-		"povils/phpmnd": "^2.2",
+		"maglnet/composer-require-checker": "^3.3",
+		"php-coveralls/php-coveralls": "^2.4",
+		"phpunit/phpunit": "^9.5",
+		"povils/phpmnd": "^2.4",
 		"psalm/plugin-phpunit": "^0.16.1",
 		"roave/security-advisories": "dev-master",
-		"sebastian/phpcpd": "^5.0",
+		"sebastian/phpcpd": "^6.0",
 		"signpostmarv/php-cs-fixer-config": "^0.21.1",
 		"vimeo/psalm": "^4.8"
 	}
