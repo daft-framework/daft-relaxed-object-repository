@@ -6,6 +6,7 @@ declare(strict_types=1);
 
 namespace DaftFramework\RelaxedObjectRepository;
 
+use function count;
 use Exception;
 use PHPUnit\Framework\TestCase as Base;
 use function random_bytes;

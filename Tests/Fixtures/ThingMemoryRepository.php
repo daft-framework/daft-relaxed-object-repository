@@ -6,13 +6,6 @@ declare(strict_types=1);
 
 namespace DaftFramework\RelaxedObjectRepository\Fixtures;
 
-use DaftFramework\RelaxedObjectRepository\AbstractObjectRepository;
-use DaftFramework\RelaxedObjectRepository\AppendableObjectRepository;
-use DaftFramework\RelaxedObjectRepository\ConvertingRepository;
-use DaftFramework\RelaxedObjectRepository\PatchableObjectRepository;
-use RuntimeException;
-use Throwable;
-
 /**
  * @template T1 as Thing
  * @template T2 as array{id:int}

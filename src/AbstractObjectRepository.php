@@ -6,6 +6,7 @@ declare(strict_types=1);
 
 namespace DaftFramework\RelaxedObjectRepository;
 
+use function is_null;
 use RuntimeException;
 use Throwable;
 

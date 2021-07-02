@@ -6,12 +6,12 @@ declare(strict_types=1);
 
 namespace DaftFramework\RelaxedObjectRepository\Fixtures;
 
+use function count;
 use DaftFramework\RelaxedObjectRepository\AbstractObjectRepository;
 use DaftFramework\RelaxedObjectRepository\AppendableObjectRepository;
 use DaftFramework\RelaxedObjectRepository\ConvertingRepository;
 use DaftFramework\RelaxedObjectRepository\PatchableObjectRepository;
-use RuntimeException;
-use Throwable;
+use function is_null;
 
 /**
  * @template T1 as object
@@ -31,9 +31,9 @@ abstract class MemoryRepository extends AbstractObjectRepository implements
 		ConvertingRepository,
 		PatchableObjectRepository
 {
-	const MIN_ID = 0;
+	public const MIN_ID = 0;
 
-	const ID_INCREMENT = 1;
+	public const ID_INCREMENT = 1;
 
 	/**
 	 * @var array<string, S2>

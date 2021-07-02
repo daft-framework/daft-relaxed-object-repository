@@ -7,6 +7,7 @@ declare(strict_types=1);
 namespace DaftFramework\RelaxedObjectRepository\Fixtures;
 
 use InvalidArgumentException;
+use function is_string;
 
 class Thing
 {
