@@ -14,17 +14,17 @@ use DaftFramework\RelaxedObjectRepository\PatchableObjectRepository;
 use function is_null;
 
 /**
- * @template OBJECT as object
+ * @template TYPE as object
  * @template ID as array{id:positive-int}
  * @template SIMPLE as array<string, scalar|array|object|null>
  * @template PARTIAL as array<string, scalar|array|object|null>
  * @template CTORARGS as array<string, scalar|array|object|null>
  *
- * @template-extends AbstractObjectRepository<OBJECT, ID, CTORARGS>
+ * @template-extends AbstractObjectRepository<TYPE, ID, CTORARGS>
  *
- * @template-implements AppendableObjectRepository<OBJECT, ID, PARTIAL, CTORARGS>
- * @template-implements ConvertingRepository<OBJECT, SIMPLE, ID, CTORARGS>
- * @template-implements PatchableObjectRepository<OBJECT, ID, PARTIAL, CTORARGS>
+ * @template-implements AppendableObjectRepository<TYPE, ID, PARTIAL, CTORARGS>
+ * @template-implements ConvertingRepository<TYPE, SIMPLE, ID, CTORARGS>
+ * @template-implements PatchableObjectRepository<TYPE, ID, PARTIAL, CTORARGS>
  */
 abstract class MemoryRepository extends AbstractObjectRepository implements
 		AppendableObjectRepository,
@@ -41,7 +41,7 @@ abstract class MemoryRepository extends AbstractObjectRepository implements
 	protected array $data = [];
 
 	/**
-	 * @var array<string, OBJECT>
+	 * @var array<string, TYPE>
 	 */
 	protected array $memory = [];
 
@@ -72,13 +72,13 @@ abstract class MemoryRepository extends AbstractObjectRepository implements
 		$this->memory[$hash] = $object;
 
 		/**
-		 * @var OBJECT
+		 * @var TYPE
 		 */
 		return $object;
 	}
 
 	/**
-	 * @param OBJECT $object
+	 * @param TYPE $object
 	 */
 	public function UpdateObject(
 		object $object
@@ -106,7 +106,7 @@ abstract class MemoryRepository extends AbstractObjectRepository implements
 	/**
 	 * @param ID $id
 	 *
-	 * @return OBJECT|null
+	 * @return TYPE|null
 	 */
 	public function MaybeRecallObject(
 		array $id
@@ -157,7 +157,7 @@ abstract class MemoryRepository extends AbstractObjectRepository implements
 	}
 
 	/**
-	 * @param OBJECT $object
+	 * @param TYPE $object
 	 *
 	 * @return ID
 	 */

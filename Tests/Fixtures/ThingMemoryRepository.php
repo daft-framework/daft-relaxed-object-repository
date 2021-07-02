@@ -7,13 +7,13 @@ declare(strict_types=1);
 namespace DaftFramework\RelaxedObjectRepository\Fixtures;
 
 /**
- * @template OBJECT as Thing
+ * @template TYPE as Thing
  * @template ID as array{id:int}
  * @template PARTIAL as array{name:string}
  * @template SIMPLE as array{id:int, name:string}
  * @template CTORARGS as array<string, scalar|array|object|null>
  *
- * @template-extends MemoryRepository<OBJECT, ID, SIMPLE, PARTIAL, CTORARGS>
+ * @template-extends MemoryRepository<TYPE, ID, SIMPLE, PARTIAL, CTORARGS>
  */
 class ThingMemoryRepository extends MemoryRepository
 {
@@ -26,9 +26,9 @@ class ThingMemoryRepository extends MemoryRepository
 	}
 
 	/**
-	 * @param OBJECT $object
+	 * @param TYPE $object
 	 *
-	 * @return OBJECT
+	 * @return TYPE
 	 */
 	public function AppendObject(
 		object $object
@@ -39,7 +39,7 @@ class ThingMemoryRepository extends MemoryRepository
 		];
 
 		/**
-		 * @var OBJECT
+		 * @var TYPE
 		 */
 		return $this->AppendObjectFromArray($data);
 	}
@@ -47,11 +47,11 @@ class ThingMemoryRepository extends MemoryRepository
 	/**
 	 * @param SIMPLE $array
 	 *
-	 * @return OBJECT
+	 * @return TYPE
 	 */
 	public function ConvertSimpleArrayToObject(array $array) : object
 	{
-		/** @var OBJECT */
+		/** @var TYPE */
 		return new Thing($array['id'], $array['name']);
 	}
 

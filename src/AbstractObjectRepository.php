@@ -11,16 +11,16 @@ use RuntimeException;
 use Throwable;
 
 /**
- * @template OBJECT as object
+ * @template TYPE as object
  * @template ID as array<string, scalar>
  * @template CTORARGS as array<string, scalar|array|object|null>
  *
- * @template-implements ObjectRepository<OBJECT, ID, CTORARGS>
+ * @template-implements ObjectRepository<TYPE, ID, CTORARGS>
  */
 abstract class AbstractObjectRepository implements ObjectRepository
 {
 	/**
-	 * @var array<string, OBJECT>
+	 * @var array<string, TYPE>
 	 */
 	protected array $memory = [];
 
@@ -29,7 +29,7 @@ abstract class AbstractObjectRepository implements ObjectRepository
 	}
 
 	/**
-	 * @param OBJECT $object
+	 * @param TYPE $object
 	 */
 	public function UpdateObject(
 		object $object
@@ -52,7 +52,7 @@ abstract class AbstractObjectRepository implements ObjectRepository
 	/**
 	 * @param ID $id
 	 *
-	 * @return OBJECT|null
+	 * @return TYPE|null
 	 */
 	public function MaybeRecallObject(
 		array $id
@@ -60,7 +60,7 @@ abstract class AbstractObjectRepository implements ObjectRepository
 		$hash = $this->RelaxedObjectHash($id);
 
 		/**
-		 * @var OBJECT|null
+		 * @var TYPE|null
 		 */
 		return $this->memory[$hash] ?? null;
 	}
@@ -68,7 +68,7 @@ abstract class AbstractObjectRepository implements ObjectRepository
 	/**
 	 * @param ID $id
 	 *
-	 * @return OBJECT
+	 * @return TYPE
 	 */
 	public function RecallObject(
 		array $id,

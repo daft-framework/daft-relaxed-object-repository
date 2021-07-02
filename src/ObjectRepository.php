@@ -9,7 +9,7 @@ namespace DaftFramework\RelaxedObjectRepository;
 use Throwable;
 
 /**
- * @template OBJECT as object
+ * @template TYPE as object
  * @template ID as array<string, scalar>
  * @template CTORARGS as array<string, scalar|array|object|null>
  */
@@ -21,7 +21,7 @@ interface ObjectRepository
 	public function __construct(array $_options);
 
 	/**
-	 * @param OBJECT $object
+	 * @param TYPE $object
 	 */
 	public function UpdateObject(
 		object $object
@@ -57,7 +57,7 @@ interface ObjectRepository
 	) : ? object;
 
 	/**
-	 * @param OBJECT $object
+	 * @param TYPE $object
 	 *
 	 * @return ID
 	 */
