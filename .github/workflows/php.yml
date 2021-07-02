@@ -1,0 +1,141 @@
+name: PHP Static Analysis & Coverage
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  static-analysis:
+    name: Static Analysis
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system: ['ubuntu-latest']
+        php-versions: ['7.4.0', '7.4.1', '7.4', '8.0']
+
+    steps:
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php-versions }}
+        coverage: none
+
+    - uses: actions/checkout@v2
+
+    - name: Validate composer.json and composer.lock
+      run: composer validate
+
+    - name: Get Composer Cache Directory
+      id: composer-cache
+      run: |
+        echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+    - name: Cache Files
+      uses: actions/cache@v2
+      with:
+        path: |
+          ${{ steps.composer-cache.outputs.dir }}
+          **/.phpunit.result.cache
+          **/psalm/cache/
+        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-composer-
+
+    - name: Install dependencies
+      if: steps.composer-cache.outputs.cache-hit != 'true'
+      run: composer install --prefer-dist --no-progress --no-suggest
+
+    - name: Run static analysis
+      run: composer run static-analysis
+
+  tests:
+    name: Tests
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system: ['ubuntu-latest']
+        php-versions: ['7.4', '8.0']
+
+    steps:
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php-versions }}
+        coverage: xdebug
+
+    - uses: actions/checkout@v2
+
+    - name: Validate composer.json and composer.lock
+      run: composer validate
+
+    - name: Get Composer Cache Directory
+      id: composer-cache
+      run: |
+        echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+    - name: Cache Files
+      uses: actions/cache@v2
+      with:
+        path: |
+          ${{ steps.composer-cache.outputs.dir }}
+          **/.phpunit.result.cache          **/.php-cs-fixer.cache
+          **/psalm/cache/
+        key: ${{ runner.os }}-tests-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-tests-
+
+    - name: Install dependencies
+      if: steps.composer-cache.outputs.cache-hit != 'true'
+      run: composer install --prefer-dist --no-progress --no-suggest
+
+    - name: Run PHPUnit
+      run: ./vendor/bin/phpunit -vvvv
+
+    - name: Run Infection
+      run: ./vendor/bin/infection --min-msi=100
+
+  psalm:
+    name: PHP 8.0 Psalm
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system: ['ubuntu-latest']
+        php-versions: ['8.0']
+
+    steps:
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php-versions }}
+        coverage: xdebug
+
+    - uses: actions/checkout@v2
+
+    - name: Validate composer.json and composer.lock
+      run: composer validate
+
+    - name: Get Composer Cache Directory
+      id: composer-cache
+      run: |
+        echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+    - name: Cache Files
+      uses: actions/cache@v2
+      with:
+        path: |
+          ${{ steps.composer-cache.outputs.dir }}
+          **/.phpunit.result.cache
+          **/.php-cs-fixer.cache
+          **/psalm/cache/
+        key: ${{ runner.os }}-psalm-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-psalm-
+
+    - name: Install dependencies
+      if: steps.composer-cache.outputs.cache-hit != 'true'
+      run: composer install --prefer-dist --no-progress --no-suggest
+
+    - name: Run psalm
+      run: ./vendor/bin/psalm --shepherd --show-info=false

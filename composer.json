@@ -45,7 +45,7 @@
 		"vimeo/psalm": "for static analysis & templated typehinting"
 	},
 	"require": {
-		"php": "^7.4",
+		"php": "^7.4|^8.0",
 		"ext-hash": "*",
 		"ext-json": "*"
 	},
